@@ -1,22 +1,34 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "ghostfm",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Sebastian Luque",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.10.2",
+    "animate.css": "^3.7.2",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-4-grid": "^3.1.0",
+    "breakpoint-sass": "^2.7.1",
     "gatsby": "^2.15.15",
     "gatsby-image": "^2.2.19",
+    "gatsby-plugin-layout": "^1.1.8",
     "gatsby-plugin-manifest": "^2.2.16",
     "gatsby-plugin-offline": "^2.2.10",
     "gatsby-plugin-react-helmet": "^3.1.7",
+    "gatsby-plugin-sass": "^2.1.15",
     "gatsby-plugin-sharp": "^2.2.22",
     "gatsby-source-filesystem": "^2.1.22",
     "gatsby-transformer-sharp": "^2.2.14",
+    "node-sass": "^4.12.0",
+    "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "react-player": "^1.13.0",
+    "reactstrap": "^8.0.1"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

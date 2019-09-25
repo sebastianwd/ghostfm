@@ -1,0 +1,34 @@
+import React, { useState } from "react"
+
+const MusicPlayerContext = React.createContext([{}, () => {}])
+
+const updatePlayerState = (setState, newState) => {
+  setState(prevState => {
+    return { ...prevState, ...newState }
+  })
+}
+
+const MusicPlayerProvider = props => {
+  const [state, setState] = useState({
+    url: null,
+    pip: false,
+    playing: true,
+    controls: false,
+    light: false,
+    volume: 0.8,
+    muted: false,
+    played: 0,
+    loaded: 0,
+    duration: 0,
+    playbackRate: 1.0,
+    loop: false,
+  })
+
+  return (
+    <MusicPlayerContext.Provider value={[state, setState]}>
+      {props.children}
+    </MusicPlayerContext.Provider>
+  )
+}
+
+export { MusicPlayerContext, MusicPlayerProvider, updatePlayerState }

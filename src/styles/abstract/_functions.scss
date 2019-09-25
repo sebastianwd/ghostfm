@@ -1,0 +1,39 @@
+/*The round-width function is used to round the 
+columns width to a number with 2 decimal places
+ (this prevents the layout from breaking in IE).*/
+
+@function round-width($i) {
+  $width: floor(100 * $i * 100 / $grid-columns) / 100;
+  @return $width#{"%"};
+}
+
+/// Use SVG anywhere a `url()` is accepted, like in a `background` property.
+///
+/// @parameter {String} $svg - SVG string. The `xmlns` attribute is added for you.
+///
+/// @example
+///   body {
+///   	background: svg-url('<svg>…</svg>');
+///   }
+@function svg-url($svg) {
+  // Add missing namespace
+  $namespace: 'xmlns="http://www.w3.org/2000/svg"';
+  @if not str-index($string: $svg, $substring: $namespace) {
+    $svg: string-replace(
+      $string: $svg,
+      $search: "<svg",
+      $replacement: "<svg #{$namespace}",
+    );
+  }
+
+  @return url("data:image/svg+xml;utf8,#{url-encode($svg)}");
+}
+
+/// Set SVG as `background-image`.
+///
+/// @parameter {String} $svg - SVG string. The `xmlns` attribute is added for you.
+///
+/// @example
+///   body {
+///   	@include background-svg('<svg>…</svg>');
+///   }

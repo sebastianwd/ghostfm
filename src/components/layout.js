@@ -8,9 +8,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import Player from "./Player/Player"
+
+import { MusicPlayerProvider } from "../components/_context/MusicPlayerContext"
 
 import Header from "./header"
-import "./layout.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -24,17 +26,23 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div>
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+    <MusicPlayerProvider>
+      <div className="page-wrapper">
+        <div className="square square-1" />
+        <div className="square square-2" />
+        <div className="square square-3" />
+        <div className="square square-4" />
+        <div className="square square-5" />
+        <div className="square square-6" />
+        <div className="square square-7" />
+        <main className="mh-100vh" style={{ zIndex: "1" }}>
+          <Header siteTitle={data.site.siteMetadata.title} />
+          {children}
+          <footer></footer>
+          <Player></Player>
+        </main>
       </div>
-    </>
+    </MusicPlayerProvider>
   )
 }
 

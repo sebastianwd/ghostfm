@@ -1,0 +1,130 @@
+/*-----------------------------------------------*/
+/* This mixin is used to initialize the grid
+ container (with display grid) and set the grid gap  */
+
+@mixin grid {
+  // fallback for IE
+  @supports not (display: grid) {
+    &::before,
+    &::after {
+      content: "";
+      display: table;
+    }
+
+    &::after {
+      clear: both;
+    }
+
+    > * {
+      float: left;
+      margin-right: $gap-horizontal;
+      margin-bottom: $gap-vertical;
+    }
+  }
+
+  @supports (grid-area: auto) {
+    display: grid;
+    grid-column-gap: $gap-horizontal;
+    grid-row-gap: $gap-vertical;
+  }
+}
+
+@mixin gridAuto($min-width, $fallback: 3) {
+  @supports not (display: grid) {
+    > * {
+      float: left;
+      width: calc(100% /#{$fallback} - #{$gap-horizontal});
+
+      &:nth-child(#{$fallback}n + 1) {
+        clear: both;
+      }
+    }
+  }
+  @supports (grid-area: auto) {
+    grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+
+    > * {
+      width: auto;
+      margin: 0;
+    }
+  }
+}
+
+.gallery-grid {
+  @include grid;
+  @include gridAuto(260px);
+}
+/*-----------------------------------------------*/
+/*https://codepen.io/claudiar/pen/QBdLwR*/
+/*.grid {
+     grid-auto-rows: 120px;
+  @include gridLayout(
+    (7, 2), //item 1
+    (5, 1), //item 2
+    (5, 1), //item 3
+    (12, 1) //item 4
+  );
+}*/
+/*Note: the second number in each pair is not required*/
+@mixin gridLayout($cols...) {
+  $i: 1;
+  @each $col in $cols {
+    > :nth-of-type(#{$i}) {
+      width: calc(#{round-width(nth($col, 1))} - #{$gap-horizontal});
+    }
+    $i: $i + 1;
+  }
+
+  @supports (grid-area: auto) {
+    grid-template-columns: repeat($grid-columns, 1fr);
+
+    $i: 1;
+    @each $col in $cols {
+      > :nth-of-type(#{$i}) {
+        grid-column-end: span nth($col, 1);
+        @if length($col) > 1 {
+          grid-row-end: span nth($col, 2);
+        }
+      }
+      $i: $i + 1;
+    }
+
+    > :nth-child(n) {
+      width: auto;
+      margin: 0;
+    }
+  }
+}
+
+/*This time, we’ll need to pass, for each element 
+in our layout, four numbers: the first two are the 
+item’s start and end position within the grid
+ columns, while the last two the row start and 
+ end position.*/
+/*.grid {
+  @include gridAdvanced(
+    (1, 8, 1, 3), //item 1
+    (1, 8, 3, 5), //item 2
+    (5, -1, 2, 4) //item 3
+  );
+}*/
+@mixin gridAdvanced($cols...) {
+  @supports (grid-area: auto) {
+    grid-template-columns: repeat($grid-columns, 1fr);
+
+    $i: 1;
+    @each $col in $cols {
+      > :nth-of-type(#{$i}) {
+        grid-column-start: nth($col, 1);
+        grid-column-end: nth($col, 2);
+        grid-row-start: nth($col, 3);
+        grid-row-end: nth($col, 4);
+      }
+      $i: $i + 1;
+    }
+  }
+}
+
+@mixin background-svg($svg) {
+  background-image: svg-url($svg);
+}

@@ -1,0 +1,84 @@
+.square {
+  position: absolute;
+  transition: 0.5s ease-out;
+  border-radius: 2px;
+  background-size: 100%;
+  border-radius: 20%;
+  position: absolute;
+  transition: 0.5s ease-out;
+  overflow: hidden;
+  border-radius: 20%;
+  z-index: -1;
+}
+.square-1 {
+  height: 300px;
+  width: 300px;
+  background: url("../images/square1.png"),
+    linear-gradient(0deg, #3358f4, #1d8cf8);
+  right: 150px;
+  opacity: 0.8;
+  animation: move-left-right 4s infinite;
+  left: 3%;
+  top: -12%;
+}
+.square-2 {
+  background-image: url("../images/square2.png");
+  opacity: 0.9;
+  animation: move-left-right 6s infinite;
+  height: 350px;
+  width: 350px;
+  opacity: 0.4;
+  right: 5%;
+  top: -12%;
+}
+.square-3 {
+  background-image: url("../images/square3.png");
+  opacity: 0.3;
+  top: -50px;
+  right: 400px;
+  animation: move-left-right 5s infinite;
+  height: 200px;
+  width: 200px;
+}
+.square-4 {
+  background-image: url("../images/square4.png");
+  animation: move-left-right 10s infinite;
+  height: 100px;
+  width: 100px;
+  opacity: 0.9;
+  right: 27%;
+  top: 70%;
+}
+.square-5 {
+  background-image: url("../images/square5.png");
+  opacity: 0.4;
+  top: 500px;
+  right: 470px;
+  animation: move-left-right 6s infinite;
+  height: 250px;
+  width: 250px;
+  left: 32%;
+  bottom: 29%;
+}
+.square-6 {
+  height: 70px;
+  width: 70px;
+  background-image: url("../images/square5.png");
+  bottom: 1%;
+  right: 20px;
+  animation: move-left-right 9s infinite;
+  height: 150px;
+  width: 150px;
+  opacity: 0.7;
+}
+.square-7 {
+  background-image: url("../images/square5.png");
+  left: -100px;
+  top: 50%;
+  opacity: 0.4;
+  animation: move-left-right 3s infinite;
+  width: 300px;
+  height: 300px;
+  right: -5%;
+  bottom: 0%;
+}

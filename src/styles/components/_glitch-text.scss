@@ -1,0 +1,18 @@
+.glitch {
+  color: white;
+  position: relative;
+  letter-spacing: 2px;
+
+  &:before {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: 10px 0 rgb(37, 65, 189);
+    top: 0;
+    color: white;
+    background: transparent;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: noise-anim-2 3s infinite linear alternate-reverse;
+  }
+}

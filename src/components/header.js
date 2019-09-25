@@ -1,34 +1,32 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import { Container } from "reactstrap"
+import Image from "./image"
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
+  <div className="d-flex align-items-center p-3">
     <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
+      className="mt-3 ml-4 p-3"
+      style={{ maxWidth: `300px`, position: "relative" }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+      <Image
+        alt="Ghostfm Logo"
+        filename="logo.png"
+        style={{
+          position: "absolute",
+          left: 0,
+          top: "-20px",
+          width: "100%",
+          height: "150%",
+          borderRadius: "10px",
+        }}
+      />
     </div>
-  </header>
+    <div className="glitch ml-2" data-text="Ghost FM">
+      Ghost FM
+    </div>
+  </div>
 )
 
 Header.propTypes = {
