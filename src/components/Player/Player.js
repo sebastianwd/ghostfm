@@ -29,7 +29,7 @@ const Player = () => {
   }
 
   return (
-    <React.Fragment>
+    <div>
       <div className="w-50">
         <ReactPlayer
           url={playerState.url}
@@ -111,7 +111,7 @@ const Player = () => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </div>
   )
 }
 
