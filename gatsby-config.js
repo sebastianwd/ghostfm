@@ -24,8 +24,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `GhostFM`,
+        short_name: `GhostFM`,
         start_url: `/`,
         background_color: `rgba(45,51,51,1)`,
         theme_color: `#161A1A`,

@@ -9,8 +9,8 @@ const IndexPage = () => {
   return (
     <React.Fragment>
       <SEO title="Home" />
-      <div className="container container--index">
-        <div className="w-100">
+      <div className="section-home section--full-height">
+        <div className="container">
           <div className="heading-container text-center h-50 col-md-12">
             <h1 className="heading-primary">
               Descubre nueva música y escucha a tus artistas favoritos
@@ -21,7 +21,7 @@ const IndexPage = () => {
               letras, descargas y más!
             </p>
           </div>
-          <div className="d-flex flex-column align-items-center justify-content-center mt-lg-5 mt-4">
+          <div className="d-flex flex-column align-items-center justify-content-center mt-4">
             <div>
               <Search></Search>
             </div>

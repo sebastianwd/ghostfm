@@ -28,6 +28,7 @@ const Layout = ({ children }) => {
 
   return (
     <MusicPlayerProvider>
+      <Header siteTitle={data.site.siteMetadata.title} />
       <div className="page-wrapper">
         <div className="square square-1" />
         <div className="square square-2" />
@@ -36,14 +37,10 @@ const Layout = ({ children }) => {
         <div className="square square-5" />
         <div className="square square-6" />
         <div className="square square-7" />
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <main className="main-container" style={{ zIndex: "1" }}>
-          {children}
-        </main>
+        {children}
         <footer></footer>
-
-        <Player></Player>
       </div>
+      <Player></Player>
     </MusicPlayerProvider>
   )
 }

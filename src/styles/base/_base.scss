@@ -1,6 +1,6 @@
 body {
   font-size: var(--text-base-size);
-  font-family: "Helvetica", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   line-height: 1.6;
   min-height: 100vh;
@@ -14,10 +14,4 @@ body {
   background-size: contain;
   position: relative;
   //overflow-y: hidden;
-  min-height: 100vh;
-}
-
-.page-wrapper {
-  position: relative;
-  min-height: 100vh;
 }
