@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import SEO from "../components/seo"
 import useApi from "../components/hooks/useApi"
+import { Container, Segment, Grid } from "semantic-ui-react"
 
 const Artist = ({ location, name }) => {
   const [{ isLoading }, getArtistByName] = useApi()
@@ -19,14 +20,22 @@ const Artist = ({ location, name }) => {
   }, [])
 
   return (
-    <React.Fragment>
-      <SEO title={name} />
-      {infoState ? <p>id : {infoState.idArtist}</p> : "cargando"}
-      <div>
-        <p>{name}</p>
-        <p>{JSON.stringify(location.state)}</p>
-      </div>
-    </React.Fragment>
+    <Container fluid>
+      <Grid stackable columns={2} divided>
+        <Grid.Row stretched>
+          <Grid.Column computer={10}>
+            <Segment>1</Segment>
+            <Segment>1</Segment>
+            <Segment>2</Segment>
+            <Segment>3</Segment>
+          </Grid.Column>
+          <Grid.Column computer={6}>
+            <Segment>1</Segment>
+            <Segment>2</Segment>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Container>
   )
 }
 
