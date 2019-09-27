@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Player from "./Player/Player"
 
 import { MusicPlayerProvider } from "../components/_context/MusicPlayerContext"
+import "../styles/index.scss"
 
 import Header from "./header"
 
