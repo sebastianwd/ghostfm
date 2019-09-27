@@ -4,9 +4,11 @@ import { Router as ReachRouter } from "@reach/router"
 
 const ArtistPage = () => {
   return (
-    <ReachRouter>
-      <Artist path="artist/:name"></Artist>
-    </ReachRouter>
+    <React.Fragment>
+      <ReachRouter>
+        <Artist path="artist/:name"></Artist>
+      </ReachRouter>
+    </React.Fragment>
   )
 }
 

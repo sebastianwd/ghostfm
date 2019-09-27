@@ -20,11 +20,11 @@ const Artist = ({ location, name }) => {
   }, [])
 
   return (
-    <Container fluid>
+    <Container fluid className="pl-md-4">
       <Grid stackable columns={2} divided>
         <Grid.Row stretched>
           <Grid.Column computer={10}>
-            <Segment>1</Segment>
+            <div className="d-flex ">1 {infoState && infoState.strArtist}</div>
             <Segment>1</Segment>
             <Segment>2</Segment>
             <Segment>3</Segment>

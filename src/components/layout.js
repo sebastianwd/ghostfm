@@ -36,12 +36,13 @@ const Layout = ({ children }) => {
         <div className="square square-5" />
         <div className="square square-6" />
         <div className="square square-7" />
-        <main className="mh-100vh" style={{ zIndex: "1" }}>
-          <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={data.site.siteMetadata.title} />
+        <main className="main-container" style={{ zIndex: "1" }}>
           {children}
-          <footer></footer>
-          <Player></Player>
         </main>
+        <footer></footer>
+
+        <Player></Player>
       </div>
     </MusicPlayerProvider>
   )
