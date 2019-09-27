@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/app/*"
-  to = "/app/index.html"
+  from = "/artist/*"
+  to = "/artist/index.html"
   status = 200
