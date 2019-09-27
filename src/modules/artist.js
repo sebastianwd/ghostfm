@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import SEO from "../components/seo"
 import useApi from "../components/hooks/useApi"
 import { Container, Segment, Grid } from "semantic-ui-react"
+import Layout from "../components/layout"
 
 const Artist = ({ location, name }) => {
   const [{ isLoading }, getArtistByName] = useApi()
@@ -20,22 +21,24 @@ const Artist = ({ location, name }) => {
   }, [])
 
   return (
-    <Container fluid>
-      <Grid stackable columns={2} divided>
-        <Grid.Row stretched>
-          <Grid.Column computer={10}>
-            <Segment>1</Segment>
-            <Segment>1</Segment>
-            <Segment>2</Segment>
-            <Segment>3</Segment>
-          </Grid.Column>
-          <Grid.Column computer={6}>
-            <Segment>1</Segment>
-            <Segment>2</Segment>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Container>
+    <Layout>
+      <Container fluid>
+        <Grid stackable columns={2} divided>
+          <Grid.Row stretched>
+            <Grid.Column computer={10}>
+              <Segment>1</Segment>
+              <Segment>1</Segment>
+              <Segment>2</Segment>
+              <Segment>3</Segment>
+            </Grid.Column>
+            <Grid.Column computer={6}>
+              <Segment>1</Segment>
+              <Segment>2</Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    </Layout>
   )
 }
 
