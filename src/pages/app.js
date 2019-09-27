@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import Artist from "../modules/artist"
 import { Router as ReachRouter } from "@reach/router"
 
-const Router = () => {
+const AppPage = () => {
   return (
     <ReachRouter>
       <Artist path="app/artist/:name"></Artist>
@@ -10,4 +10,4 @@ const Router = () => {
   )
 }
 
-export default Router
+export default AppPage
