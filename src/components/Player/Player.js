@@ -30,20 +30,22 @@ const Player = () => {
 
   return (
     <React.Fragment>
-      <ReactPlayer
-        url={playerState.url}
-        playing={playerState.playing}
-        volume={playerState.volume}
-        muted={playerState.muted}
-        pip={playerState.pip}
-        controls
-        ref={playerRef}
-        onPlay={handlePlay}
-        onPause={handlePause}
-        onProgress={handleProgress}
-        onDuration={handleDuration}
-        onEnded={handleEnded}
-      />
+      <div className="w-50">
+        <ReactPlayer
+          url={playerState.url}
+          playing={playerState.playing}
+          volume={playerState.volume}
+          muted={playerState.muted}
+          pip={playerState.pip}
+          controls
+          ref={playerRef}
+          onPlay={handlePlay}
+          onPause={handlePause}
+          onProgress={handleProgress}
+          onDuration={handleDuration}
+          onEnded={handleEnded}
+        />
+      </div>
       <div className="index_av__background__3hOvd">
         <div className="index_av__container__1nzKQ">
           <div className="index_av__playback__u58Ue">

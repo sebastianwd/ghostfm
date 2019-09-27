@@ -5,8 +5,6 @@ import SEO from "../components/seo"
 
 import Search from "../components/Search"
 
-import "../styles/index.scss"
-
 const IndexPage = () => {
   return (
     <React.Fragment>
