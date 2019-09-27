@@ -5,7 +5,7 @@ import { Router as ReachRouter } from "@reach/router"
 const AppPage = () => {
   return (
     <ReachRouter>
-      <Artist path="app/artist/:name"></Artist>
+      <Artist path="artist/:name"></Artist>
     </ReachRouter>
   )
 }
