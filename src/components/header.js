@@ -10,18 +10,20 @@ const Header = ({ siteTitle }) => (
       className="mt-3 ml-4 p-3"
       style={{ maxWidth: `300px`, position: "relative" }}
     >
-      <Image
-        alt="Ghostfm Logo"
-        filename="logo.png"
-        style={{
-          position: "absolute",
-          left: 0,
-          top: "-20px",
-          width: "100%",
-          height: "150%",
-          borderRadius: "10px",
-        }}
-      />
+      <Link to="/">
+        <Image
+          alt="Ghostfm Logo"
+          filename="logo.png"
+          style={{
+            position: "absolute",
+            left: 0,
+            top: "-20px",
+            width: "100%",
+            height: "150%",
+            borderRadius: "10px",
+          }}
+        />
+      </Link>
     </div>
     <div className="glitch ml-2" data-text="Ghost FM">
       Ghost FM
