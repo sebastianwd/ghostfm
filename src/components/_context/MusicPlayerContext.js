@@ -12,7 +12,7 @@ const MusicPlayerProvider = props => {
   const [state, setState] = useState({
     url: null,
     pip: false,
-    playing: true,
+    playing: false,
     controls: false,
     light: false,
     volume: 0.8,
@@ -22,6 +22,10 @@ const MusicPlayerProvider = props => {
     duration: 0,
     playbackRate: 1.0,
     loop: false,
+    thumbnailUrl: "",
+    artistName: "",
+    songName: "",
+    albumName: "",
   })
 
   return (

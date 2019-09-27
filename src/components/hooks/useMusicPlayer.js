@@ -18,6 +18,7 @@ const useMusicPlayer = () => {
       played: 0,
       loaded: 0,
       pip: false,
+      playing: true,
     })
   }
 
@@ -46,8 +47,16 @@ const useMusicPlayer = () => {
   function handlePlay() {
     updateState({ playing: true })
   }
+  function handlePause() {
+    console.log("handlePause")
+    updateState({ playing: false })
+  }
 
   function handlePlayPause() {
+    console.log(playerState.playing)
+    if (!playerState.url) {
+      return
+    }
     console.log("pausing...")
     updateState({ playing: !playerState.playing })
   }
@@ -67,6 +76,7 @@ const useMusicPlayer = () => {
     handlePlay,
     handleEnded,
     handlePlayPause,
+    handlePause,
   }
 }
 

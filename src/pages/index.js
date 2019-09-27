@@ -28,7 +28,6 @@ const IndexPage = () => {
             <div>
               <Search></Search>
             </div>
-            <Link to="/artist/">page 2</Link>
           </div>
         </div>
       </div>

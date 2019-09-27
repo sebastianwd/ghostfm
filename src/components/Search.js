@@ -2,21 +2,22 @@ import React, { useRef, useContext } from "react"
 
 import useMusicPlayer from "./hooks/useMusicPlayer"
 import axios from "axios"
+import { navigate } from "gatsby"
+import useApi from "../components/hooks/useApi"
 
 const Search = () => {
   const searchRef = useRef()
   const { playTrack } = useMusicPlayer()
+  const [{ isLoading, isError }, getArtistByName] = useApi()
 
   const handleClick = () => {
-    console.log(`Searching ${searchRef.current.value}...`)
-    axios({
-      method: "get",
-      url: "http://localhost:8081/youtubeid",
-      params: {
-        query: searchRef.current.value,
-      },
-    }).then(response => {
-      playTrack(response.data)
+    getArtistByName(searchRef.current.value).then(data => {
+      console.log("async received: ", data)
+      if (!isError && data) {
+        navigate("/app/artist/" + searchRef.current.value, {
+          state: data,
+        })
+      }
     })
   }
 
@@ -28,12 +29,18 @@ const Search = () => {
         className="input--primary"
         placeholder="Buscar"
       />
+
       <button
         onClick={handleClick}
         type="button"
         className="btn btn--inside btn--info"
       >
-        &nbsp;<i className="fa fa-search"></i>
+        &nbsp;
+        {isLoading ? (
+          <i className="fa fa-spinner fa-spin"></i>
+        ) : (
+          <i className="fa fa-search"></i>
+        )}
       </button>
     </React.Fragment>
   )

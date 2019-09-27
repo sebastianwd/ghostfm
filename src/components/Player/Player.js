@@ -17,6 +17,7 @@ const Player = () => {
     handleSeekMouseDown,
     handlePlay,
     handleEnded,
+    handlePause,
   } = useMusicPlayer()
 
   const playerRef = useRef()
@@ -38,6 +39,7 @@ const Player = () => {
         controls
         ref={playerRef}
         onPlay={handlePlay}
+        onPause={handlePause}
         onProgress={handleProgress}
         onDuration={handleDuration}
         onEnded={handleEnded}
@@ -46,7 +48,7 @@ const Player = () => {
         <div className="index_av__container__1nzKQ">
           <div className="index_av__playback__u58Ue">
             <div className="index_icons__MkQjN">
-              <Controls></Controls>
+              <Controls playerRef={playerRef}></Controls>
             </div>
             <div />
           </div>
@@ -74,23 +76,24 @@ const Player = () => {
               </div>
             </div>
           </div>
-          <div className="index_meta__ilh_B">
-            <div className="index_meta__img__4jOGx">
-              <img
-                src="https://i.scdn.co/image/017bd760057251b60dd35c73b9e337c743e78092"
-                alt="Within"
-              />
+          {playerState.artistName && (
+            <div className="index_meta__ilh_B">
+              <div className="index_meta__img__4jOGx">
+                <img
+                  src={playerState.thumbnailUrl}
+                  alt={playerState.artistName}
+                />
+              </div>
+              <div className="index_meta__tags__31gB2">
+                <span className="index_meta__tags__title__2pPO5">
+                  On The Offensive
+                </span>
+                <span className="index_meta__tags__artist__1BdKF">
+                  <span>From Autumn To Ashes</span>
+                </span>
+              </div>
             </div>
-            <div className="index_meta__tags__31gB2">
-              <span className="index_meta__tags__title__2pPO5">
-                On The Offensive
-              </span>
-              <span className="index_meta__tags__artist__1BdKF">
-                <span>From Autumn To Ashes</span>
-              </span>
-            </div>
-          </div>
-
+          )}
           <div className="index_media__toggles__2sLLn">
             <div className="index_volume__slider__mTWbJ">
               <i className="fa fa-volume-up" />
