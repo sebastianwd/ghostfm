@@ -14,10 +14,11 @@ const useApi = () => {
       console.log("useApi", "fetching: " + BASE_URL + endpoint)
       const result = await axios({
         method: "get",
-        url: BASE_URL + endpoint,
-        params,
+        url: `${BASE_URL}${endpoint}`,
+        params: params,
       })
       console.log("useApi", "Data received: " + JSON.stringify(result))
+      setIsLoading(false)
       return result.data
     } catch (error) {
       console.log("useApi", error)
@@ -33,8 +34,45 @@ const useApi = () => {
 
     return data
   }
+  async function getTopTracksByArtistName(name) {
+    let data = await fetchData("artist/toptracks", {
+      name: name,
+    })
 
-  return [{ isLoading, isError }, getArtistByName]
+    return data
+  }
+  async function getVideoId(trackName) {
+    let data = await fetchData("youtubeid", {
+      query: trackName,
+    })
+
+    return data
+  }
+
+  async function getLyrics(artistName, trackName) {
+    let data = await fetchData("track/lyrics", {
+      artist: artistName,
+      track: trackName,
+    })
+    return data
+  }
+
+  async function searchAutocomplete(query, type = "artist") {
+    let data = await fetchData("search", {
+      query: query,
+    })
+    return data
+  }
+
+  return {
+    isLoading,
+    isError,
+    getArtistByName,
+    getTopTracksByArtistName,
+    getVideoId,
+    getLyrics,
+    searchAutocomplete,
+  }
 }
 
 export default useApi

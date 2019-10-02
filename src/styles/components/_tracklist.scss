@@ -1,0 +1,35 @@
+.tracklist-container {
+  padding: 5px;
+  background-color: #282828;
+  width: 100%;
+  min-height: 50px;
+  margin-top: var(--space-md);
+}
+
+.tracklist {
+  display: grid;
+  grid-auto-rows: auto;
+}
+
+.track {
+  font-size: calc(var(--text-xs) * 1.05);
+  font-weight: 300;
+  background-color: darken(#282828, 1%);
+  border-bottom: 1px solid darken(#282828, 4%);
+  padding: 12px 5px;
+  display: flex;
+  cursor: pointer;
+  &__number {
+    margin-right: var(--space-lg);
+  }
+  &__name {
+    margin-right: auto;
+  }
+  &__playcount {
+    margin-right: 3%;
+  }
+  &__lyrics {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+}

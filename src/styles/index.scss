@@ -1,21 +1,20 @@
 @import "~normalize.css/normalize";
 @import "~breakpoint-sass/stylesheets/breakpoint";
 @import "~animate.css/animate";
+@import "../../node_modules/breakpoint-sass/stylesheets/breakpoint";
 
 @import "base/reset";
 
 @import "~bootstrap-4-grid/css/grid.css";
 
 @import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-
 @import "abstract/variables";
 @import "abstract/functions";
 @import "abstract/mixins";
 @import "abstract/animation";
 
-@import "~semantic-ui-css/semantic.min.css";
-
-@import url(https://fonts.googleapis.com/css?family=Poppins&display=swap);
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,400&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,600&display=swap");
 
 @import "base/base";
 @import "base/typography";
@@ -28,11 +27,38 @@
 
 @import "components/input";
 @import "components/buttons";
+@import "components/artist-card";
+@import "components/tracklist";
+@import "components/modal";
+@import "components/dropdown";
 
 @import "pages/index";
+@import "pages/artist";
 
 .section-header {
   position: fixed;
   top: 0;
   height: 75px;
+  width: 100%;
+  background-color: rgba(15, 15, 15, 0.911);
+  z-index: 5;
+}
+
+.path {
+  max-width: 75%;
+  right: 0;
+  top: 30px;
+  max-height: 90%;
+  z-index: -1;
+}
+.path {
+  position: absolute;
+  opacity: 0.02;
+}
+.path2 {
+  position: absolute;
+  opacity: 0.02;
+  max-width: 41%;
+  right: -60px;
+  top: -50px;
 }

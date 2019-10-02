@@ -7,11 +7,23 @@ body {
   color: var(--gray-1);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
+  background-image: url(../images/dots.png);
   background-size: contain;
-  background: url("../images/dots.png"),
-    linear-gradient(to bottom, #191c53 0%, #1b1e49 100%);
-  background-size: contain;
+  background-color: #16161a;
   position: relative;
-  //overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+p {
+  font-size: var(--text-xs);
+}
+
+li {
+  list-style: none;
+  font-size: var(--text-sm);
 }

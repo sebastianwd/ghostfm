@@ -5,12 +5,14 @@
   flex-shrink: 0;
   flex-grow: 1;
   overflow-x: hidden;
+  padding-top: 72px;
+  padding-bottom: 82px;
 
   @include breakpoint($to-xsm) {
     justify-content: center;
   }
 }
 .section--full-height {
-  min-height: calc(100vh - 172px);
+  min-height: calc(100vh - 152px);
   overflow: hidden;
 }

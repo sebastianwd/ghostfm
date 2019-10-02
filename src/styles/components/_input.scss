@@ -1,11 +1,15 @@
 .input {
   &--primary {
-    width: 360px;
+    width: 350px;
     background: #fff;
     font: inherit;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5);
     border: 0;
     outline: 0;
     padding: 16px 18px;
+
+    @include breakpoint($to-sm) {
+      width: 280px;
+    }
   }
 }

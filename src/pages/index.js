@@ -21,10 +21,8 @@ const IndexPage = () => {
               letras, descargas y más!
             </p>
           </div>
-          <div className="d-flex flex-column align-items-center justify-content-center mt-4">
-            <div>
-              <Search></Search>
-            </div>
+          <div className="d-flex align-items-center justify-content-center mt-4">
+            <Search></Search>
           </div>
         </div>
       </div>

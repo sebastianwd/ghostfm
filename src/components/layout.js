@@ -11,6 +11,10 @@ import { useStaticQuery, graphql } from "gatsby"
 import Player from "./Player/Player"
 
 import { MusicPlayerProvider } from "../components/_context/MusicPlayerContext"
+
+import blob from "../images/blob.png"
+import path2 from "../images/path2.png"
+
 import "../styles/index.scss"
 
 import Header from "./header"
@@ -30,13 +34,8 @@ const Layout = ({ children }) => {
     <MusicPlayerProvider>
       <Header siteTitle={data.site.siteMetadata.title} />
       <div className="page-wrapper">
-        <div className="square square-1" />
-        <div className="square square-2" />
-        <div className="square square-3" />
-        <div className="square square-4" />
-        <div className="square square-5" />
-        <div className="square square-6" />
-        <div className="square square-7" />
+        <img src={blob} className="path"></img>
+        <img src={path2} className="path2"></img>
         {children}
         <footer></footer>
       </div>
