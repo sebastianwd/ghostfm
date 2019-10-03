@@ -4,15 +4,16 @@ const Dropdown = memo(({ items, triggerSearch }) => {
   return (
     <div className="dropdown-container">
       <ul className="dropdown">
-        {items.map((item, index) => (
-          <li
-            className="dropdown__items"
-            key={index}
-            onClick={() => triggerSearch(item.strArtist)}
-          >
-            {item.strArtist}
-          </li>
-        ))}
+        {items &&
+          items.map((item, index) => (
+            <li
+              className="dropdown__items"
+              key={index}
+              onClick={() => triggerSearch(item.strArtist)}
+            >
+              {item.strArtist}
+            </li>
+          ))}
       </ul>
     </div>
   )

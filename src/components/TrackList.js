@@ -14,7 +14,7 @@ const TrackList = ({ artistName }) => {
   } = useApi()
   const [tracks, setTracks] = useState()
   const [lyrics, setLyrics] = useState()
-  const { playTrack } = useMusicPlayer()
+  const { playTrack, setQueue, playTrackAndSetQueue } = useMusicPlayer()
   const { Portal } = usePortal()
 
   useEffect(() => {
@@ -27,9 +27,9 @@ const TrackList = ({ artistName }) => {
     })
   }, [])
 
-  const handleClick = trackName => {
-    getVideoId(trackName).then(videoId => {
-      playTrack(videoId)
+  const handleClick = (artistName, trackName) => {
+    getVideoId(`${artistName} ${trackName}`).then(videoId => {
+      playTrackAndSetQueue(videoId, trackName, artistName, tracks && tracks)
     })
   }
 
@@ -49,7 +49,7 @@ const TrackList = ({ artistName }) => {
               <div
                 key={index}
                 className="track"
-                onClick={() => handleClick(`${artistName} ${item.name}`)}
+                onClick={() => handleClick(artistName, item.name)}
               >
                 <span className="track__number">{index + 1}</span>
                 <span className="track__name">{item.name}</span>

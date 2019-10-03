@@ -7,9 +7,12 @@ import Duration from "../utils/Duration"
 
 import Controls from "./Controls"
 
+import useApi from "../hooks/useApi"
+
 const Player = () => {
+  const [playerState, setPlayerState] = useContext(MusicPlayerContext)
+
   const {
-    playerState,
     handleProgress,
     handleDuration,
     handleSeekMouseUp,
@@ -18,7 +21,10 @@ const Player = () => {
     handlePlay,
     handleEnded,
     handlePause,
+    playTrack,
   } = useMusicPlayer()
+
+  const { getVideoId } = useApi()
 
   const playerRef = useRef()
 
@@ -26,6 +32,23 @@ const Player = () => {
     let target = e.target
     handleSeekMouseUp()
     playerRef.current.seekTo(parseFloat(target.value))
+  }
+
+  const handleEndedLocal = () => {
+    handleEnded()
+    console.log("handleEndedLocal", playerState)
+    if (playerState.queue.length > 0) {
+      const currentTrackIndex = playerState.queue.findIndex(
+        item => item.track === playerState.currentSong
+      )
+      console.log("current song ", playerState.queue[currentTrackIndex])
+      console.log("next song ", playerState.queue[currentTrackIndex + 1])
+      const nextTrack = playerState.queue[currentTrackIndex + 1].track
+      const nextArtist = playerState.queue[currentTrackIndex + 1].artist
+      getVideoId(`${nextArtist} ${nextTrack}`).then(videoId => {
+        playTrack(videoId, nextTrack, nextArtist)
+      })
+    }
   }
 
   return (
@@ -51,7 +74,7 @@ const Player = () => {
           onPause={handlePause}
           onProgress={handleProgress}
           onDuration={handleDuration}
-          onEnded={handleEnded}
+          onEnded={handleEndedLocal}
           width="100%"
           height="100%"
         />
@@ -92,20 +115,22 @@ const Player = () => {
                 </div>
               </div>
             </div>
-            {playerState.artistName && (
+            {playerState.currentSong && (
               <div className="index_meta__ilh_B">
                 <div className="index_meta__img__4jOGx">
-                  <img
-                    src={playerState.thumbnailUrl}
-                    alt={playerState.artistName}
-                  />
+                  {playerState.thumbnailUrl && (
+                    <img
+                      src={playerState.thumbnailUrl}
+                      alt={playerState.currentSong}
+                    />
+                  )}
                 </div>
                 <div className="index_meta__tags__31gB2">
                   <span className="index_meta__tags__title__2pPO5">
-                    On The Offensive
+                    {playerState.currentSong}
                   </span>
                   <span className="index_meta__tags__artist__1BdKF">
-                    <span>From Autumn To Ashes</span>
+                    <span>{playerState.currentArtist}</span>
                   </span>
                 </div>
               </div>

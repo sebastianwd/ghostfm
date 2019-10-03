@@ -22,12 +22,12 @@ const MusicPlayerProvider = props => {
     duration: 0,
     playbackRate: 1.0,
     loop: false,
-    thumbnailUrl: "",
-    artistName: "",
-    songName: "",
-    albumName: "",
+    currentImg: "",
+    currentSong: "",
+    currentArtist: "",
+    currentAlbum: "",
+    queue: [],
   })
-
   return (
     <MusicPlayerContext.Provider value={[state, setState]}>
       {props.children}

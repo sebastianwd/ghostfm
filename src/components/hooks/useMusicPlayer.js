@@ -11,7 +11,7 @@ const useMusicPlayer = () => {
     })
   }
 
-  function playTrack(id) {
+  function playTrack(id, trackName = "", artistName = "") {
     console.log(`looking up video with id ${id}...`)
     updateState({
       url: `https://www.youtube.com/watch?v=${id}`,
@@ -19,7 +19,46 @@ const useMusicPlayer = () => {
       loaded: 0,
       pip: false,
       playing: true,
+      currentSong: trackName,
+      currentArtist: artistName,
     })
+  }
+
+  function playTrackAndSetQueue(id, trackName = "", artistName = "", tracks) {
+    if (tracks) {
+      let queue = tracks.map(({ artist, name }) => {
+        return { artist: artist.strArtist, track: name }
+      })
+      updateState({
+        url: `https://www.youtube.com/watch?v=${id}`,
+        played: 0,
+        loaded: 0,
+        pip: false,
+        playing: true,
+        currentSong: trackName,
+        currentArtist: artistName,
+        queue: queue,
+      })
+      console.log("queue added", playerState.queue)
+    } else {
+      updateState({
+        url: `https://www.youtube.com/watch?v=${id}`,
+        played: 0,
+        loaded: 0,
+        pip: false,
+        playing: true,
+        currentSong: trackName,
+        currentArtist: artistName,
+      })
+    }
+  }
+
+  function setQueue(tracks) {
+    let queue = tracks.map(({ artist, name }) => {
+      return { artist: artist.strArtist, track: name }
+    })
+    updateState({ queue: queue })
+    console.log("queue added", playerState.queue)
   }
 
   function handleProgress(state) {
@@ -63,6 +102,8 @@ const useMusicPlayer = () => {
 
   function handleEnded() {
     console.log("song ended")
+
+    updateState({ playing: false })
   }
 
   return {
@@ -77,6 +118,8 @@ const useMusicPlayer = () => {
     handleEnded,
     handlePlayPause,
     handlePause,
+    setQueue,
+    playTrackAndSetQueue,
   }
 }
 
