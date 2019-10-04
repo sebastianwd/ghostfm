@@ -6,6 +6,9 @@
   font-weight: 400;
   font-family: inherit;
   line-height: 1.1em;
+  @include breakpoint($to-sm) {
+    font-size: var(--text-md);
+  }
 }
 
 .title-primary {
@@ -17,4 +20,7 @@
 .text-primary {
   padding: 0px 5%;
   font-size: calc(var(--text-md) * 0.8);
+  @include breakpoint($to-sm) {
+    font-size: calc(var(--text-sm) * 0.8);
+  }
 }

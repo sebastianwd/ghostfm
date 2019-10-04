@@ -44,7 +44,7 @@ body {
       "nav-bar nav-bar"
       "main-view main-view"
       "now-playing-bar now-playing-bar";
-    grid-template-rows: 92px auto 100px;
+    grid-template-rows: 72px auto 100px;
   }
 }
 
@@ -66,7 +66,7 @@ body {
   top: 0;
   max-height: 100vh;
   @include breakpoint($to-md) {
-    max-height: 92px;
+    max-height: 72px;
     z-index: 10;
   }
   background-color: rgba(12, 12, 12, 0.8);

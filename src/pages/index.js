@@ -11,7 +11,7 @@ const IndexPage = () => {
       <SEO title="Home" />
       <div className="section-home section--full-height">
         <div className="container-fluid container-home">
-          <div className="d-flex align-items-center justify-content-center mt-4">
+          <div className="d-flex align-items-center justify-content-center mt-lg-4">
             <Search></Search>
           </div>
           <div className="heading-container text-left h-50 col-md-6 margin-top-10">

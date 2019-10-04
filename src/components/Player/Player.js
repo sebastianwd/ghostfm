@@ -96,7 +96,7 @@ const Player = () => {
                 }}
               ></div>
             </div>
-            <div className="track-info">
+            <div className="track-info ellipsis-one-line">
               <div className="track-info__track ellipsis-one-line">
                 {playerState.currentSong}
               </div>
