@@ -25,6 +25,7 @@ const Artist = ({ location, name }) => {
 
   return (
     <div className="section-artist pl-md-4 container-fluid">
+      <SEO title={name}></SEO>
       <div className="row">
         {infoState && (
           <div className="col-12 col-md-8">
