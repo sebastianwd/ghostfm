@@ -71,7 +71,7 @@ const useMusicPlayer = () => {
     updateState({ duration })
   }
 
-  function handleSeekMouseUp(e) {
+  function handleSeekMouseUp() {
     updateState({ seeking: false })
   }
 

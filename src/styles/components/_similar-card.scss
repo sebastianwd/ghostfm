@@ -1,0 +1,43 @@
+.similar-card {
+  height: 260px;
+  margin: 0 2px;
+  margin-bottom: 4px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 4;
+
+  &:hover {
+    & .similar-card__image__inner {
+      transform: scale(1.1);
+      filter: blur(2px);
+    }
+  }
+
+  &__image {
+    height: 100%;
+    &__inner {
+      transition: all 0.3s ease;
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+  &__title {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    &__inner {
+      padding: 5px 9px;
+      background-color: rgba(21, 22, 24, 0.918);
+      border-radius: 2px;
+    }
+  }
+}

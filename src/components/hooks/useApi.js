@@ -64,6 +64,13 @@ const useApi = () => {
     return data
   }
 
+  async function getSimilarByArtistName(artistName) {
+    let data = await fetchData("artist/similar", {
+      name: artistName,
+    })
+    return data
+  }
+
   return {
     isLoading,
     isError,
@@ -72,6 +79,7 @@ const useApi = () => {
     getVideoId,
     getLyrics,
     searchAutocomplete,
+    getSimilarByArtistName,
   }
 }
 

@@ -25,12 +25,14 @@ const TrackList = ({ artistName }) => {
         setTracks(data)
       }
     })
-  }, [])
+  }, [artistName])
 
   const handleClick = (artistName, trackName) => {
-    getVideoId(`${artistName} ${trackName}`).then(videoId => {
-      playTrackAndSetQueue(videoId, trackName, artistName, tracks && tracks)
-    })
+    getVideoId(decodeURIComponent(`${artistName} ${trackName}`)).then(
+      videoId => {
+        playTrackAndSetQueue(videoId, trackName, artistName, tracks && tracks)
+      }
+    )
   }
 
   const showLyrics = (e, artistName, trackName) => {
@@ -52,7 +54,9 @@ const TrackList = ({ artistName }) => {
                 onClick={() => handleClick(artistName, item.name)}
               >
                 <span className="track__number">{index + 1}</span>
-                <span className="track__name">{item.name}</span>
+                <span className="track__name">
+                  {decodeURIComponent(item.name)}
+                </span>
                 <span className="track__playcount">{item.playcount}</span>
                 <span
                   className="track__lyrics"

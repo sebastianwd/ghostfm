@@ -1,15 +1,105 @@
 .input {
   &--primary {
-    width: 350px;
-    background: #fff;
-    font: inherit;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5);
-    border: 0;
-    outline: 0;
-    padding: 16px 18px;
+    font-size: var(--text-md);
+    line-height: 44px;
+    letter-spacing: -0.005em;
+    font-weight: var(--glue-font-weight-black);
+    color: #fff;
+    text-transform: none;
+    caret-color: #1d66b9;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 80%;
+    background-color: transparent;
+    border: none;
+    outline: none;
 
     @include breakpoint($to-sm) {
-      width: 280px;
+      width: 100%;
     }
   }
+}
+.input-spacing {
+  width: 80%;
+  background-color: #282828;
+  padding: 16px 20px;
+
+  @include breakpoint($to-sm) {
+    width: 100%;
+  }
+}
+
+$range-input-height: 10px;
+
+input[type="range"].range__played {
+  margin: auto;
+  -webkit-appearance: none;
+  position: relative;
+  overflow: hidden;
+  height: $range-input-height;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0; /* iOS */
+}
+
+.range::-webkit-slider-runnable-track {
+  background: #ddd;
+}
+
+/*
+* 1. Set to 0 width and remove border for a slider without a thumb
+*/
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; /* 1 */
+  height: $range-input-height;
+  background: #fff;
+  box-shadow: -100vw 0 0 100vw dodgerblue;
+  border: 2px solid #999; /* 1 */
+}
+
+.range::-moz-range-track {
+  height: $range-input-height;
+  background: #ddd;
+}
+
+.range::-moz-range-thumb {
+  background: #fff;
+  height: $range-input-height;
+  width: 20px;
+  border: 3px solid #999;
+  border-radius: 0 !important;
+  box-shadow: -100vw 0 0 100vw dodgerblue;
+  box-sizing: border-box;
+}
+
+.range::-ms-fill-lower {
+  background: dodgerblue;
+}
+
+.range::-ms-thumb {
+  background: #fff;
+  border: 2px solid #999;
+  height: $range-input-height;
+  width: 20px;
+  box-sizing: border-box;
+}
+
+.range::-ms-ticks-after {
+  display: none;
+}
+
+.range::-ms-ticks-before {
+  display: none;
+}
+
+.range::-ms-track {
+  background: #ddd;
+  color: transparent;
+  height: $range-input-height;
+  border: none;
+}
+
+.range::-ms-tooltip {
+  display: none;
 }

@@ -18,3 +18,15 @@
 .container-fluid {
   max-width: 1920px !important;
 }
+
+.ellipsis-one-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 1px;
+  margin-right: -1px;
+}
+
+.margin-top-10 {
+  margin-top: 10%;
+}

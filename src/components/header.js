@@ -5,10 +5,10 @@ import { Container } from "reactstrap"
 import Image from "./image"
 
 const Header = ({ siteTitle }) => (
-  <div className="d-flex align-items-center  p-3 section-header">
+  <div className="d-flex align-items-start  p-3 section-header">
     <div className="d-flex align-items-center">
       <div
-        className="mt-3 ml-4 p-3"
+        className="mt-3  p-3"
         style={{ maxWidth: `300px`, position: "relative" }}
       >
         <Link to="/">

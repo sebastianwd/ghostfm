@@ -31,12 +31,11 @@ const Player = () => {
   const handleSeekMouseUpLocal = e => {
     let target = e.target
     handleSeekMouseUp()
-    playerRef.current.seekTo(parseFloat(target.value))
+    playerRef.current && playerRef.current.seekTo(parseFloat(target.value))
   }
 
   const handleEndedLocal = () => {
     handleEnded()
-    console.log("handleEndedLocal", playerState)
     if (playerState.queue.length > 0) {
       const currentTrackIndex = playerState.queue.findIndex(
         item => item.track === playerState.currentSong
@@ -53,15 +52,7 @@ const Player = () => {
 
   return (
     <React.Fragment>
-      <div
-        style={{
-          position: "fixed",
-          bottom: "55px",
-          right: "0",
-          height: "30%",
-          width: "25%",
-        }}
-      >
+      {playerState.url && (
         <ReactPlayer
           url={playerState.url}
           playing={playerState.playing}
@@ -75,79 +66,56 @@ const Player = () => {
           onProgress={handleProgress}
           onDuration={handleDuration}
           onEnded={handleEndedLocal}
-          width="100%"
-          height="100%"
+          className="video-player"
+          style={{ position: "absolute", bottom: "50px", right: "0" }}
         />
-        <div
-          className="index_av__background__3hOvd"
-          style={{ position: "fixed", botton: "0", left: "0" }}
-        >
-          <div className="index_av__container__1nzKQ">
-            <div className="index_av__playback__u58Ue">
-              <div className="index_icons__MkQjN">
-                <Controls playerRef={playerRef}></Controls>
-              </div>
-              <div />
+      )}
+      <div className="progress-bar">
+        <input
+          min={0}
+          max={1}
+          step="any"
+          value={playerState.played}
+          onMouseDown={handleSeekMouseDown}
+          onChange={handleSeekChange}
+          onMouseUp={handleSeekMouseUpLocal}
+          type="range"
+          className="range range__played"
+          style={{ width: "100%" }}
+        />
+      </div>
+      <div className="player-wrapper__inner">
+        <div className="player">
+          <div className="player__controls--left">
+            <div className="player__thumbnail">
+              <div
+                className="player__thumbnail__inner"
+                style={{
+                  backgroundImage: `url(${playerState.thumbnailUrl ||
+                    "https://i.imgur.com/op68DON.jpg"})`,
+                }}
+              ></div>
             </div>
-            <div className="index_progress__container__ngzSQ">
-              <div className="index_progress__1xtJx">
-                <div className="index_progress__currentTime__3ltXz">
-                  <Duration
-                    seconds={playerState.duration * playerState.played}
-                  />
-                </div>
-                <div className="index_progress__bar__1D-aE">
-                  <input
-                    min={0}
-                    max={1}
-                    step="any"
-                    value={playerState.played}
-                    onMouseDown={handleSeekMouseDown}
-                    onChange={handleSeekChange}
-                    onMouseUp={handleSeekMouseUpLocal}
-                    type="range"
-                    className="index_progress__bar__percent__o52rO"
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="index_progress__songDuration__nLySu">
-                  <Duration seconds={playerState.duration} />
-                </div>
+            <div className="track-info">
+              <div className="track-info__track ellipsis-one-line">
+                {playerState.currentSong}
+              </div>
+              <div className="track-info__artist ellipsis-one-line mt-1">
+                {playerState.currentArtist}
               </div>
             </div>
-            {playerState.currentSong && (
-              <div className="index_meta__ilh_B">
-                <div className="index_meta__img__4jOGx">
-                  {playerState.thumbnailUrl && (
-                    <img
-                      src={playerState.thumbnailUrl}
-                      alt={playerState.currentSong}
-                    />
-                  )}
-                </div>
-                <div className="index_meta__tags__31gB2">
-                  <span className="index_meta__tags__title__2pPO5">
-                    {playerState.currentSong}
-                  </span>
-                  <span className="index_meta__tags__artist__1BdKF">
-                    <span>{playerState.currentArtist}</span>
-                  </span>
-                </div>
-              </div>
-            )}
-            <div className="index_media__toggles__2sLLn">
-              <div className="index_volume__slider__mTWbJ">
-                <i className="fa fa-volume-up" />
-              </div>
-              <i
-                className="fa fa-list-ol"
-                style={{ marginLeft: "15px", cursor: "pointer" }}
-              />
-              <i
-                className="fab fa-react"
-                style={{ marginLeft: "15px", cursor: "pointer" }}
-              />
+          </div>
+          <div className="player__controls--middle">
+            <div className="main-controls">
+              <Controls></Controls>
             </div>
+          </div>
+          <div className="player__controls--right">
+            <div className="controls__volume d-none d-md-block">
+              <i className="fa fa-volume-up" />
+            </div>
+            <i className="fa fa-list-ol" />
+            <i className="fab fa-react d-none d-md-block" />
           </div>
         </div>
       </div>

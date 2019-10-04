@@ -13,7 +13,7 @@ const Controls = ({ playerRef }) => {
       <i onClick={handlePlayPause} className={`fa ${playIcon} fa-2x`} />
       <i className="fa fa-step-forward" />
       <i
-        className="fa fa-redo"
+        className="fa fa-redo d-none d-md-block"
         onClick={() => playerRef.current.seekTo(parseFloat(0.0))}
       />
     </React.Fragment>

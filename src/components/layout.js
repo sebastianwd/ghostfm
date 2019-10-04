@@ -32,14 +32,17 @@ const Layout = ({ children }) => {
 
   return (
     <MusicPlayerProvider>
-      <Header siteTitle={data.site.siteMetadata.title} />
       <div className="page-wrapper">
-        <img src={blob} className="path"></img>
-        <img src={path2} className="path2"></img>
-        {children}
-        <footer></footer>
+        <Header siteTitle={data.site.siteMetadata.title} />
+        <main>
+          <img src={blob} className="path"></img>
+          <img src={path2} className="path2"></img>
+          {children}
+        </main>
+        <div className="player-wrapper">
+          <Player></Player>
+        </div>
       </div>
-      <Player></Player>
     </MusicPlayerProvider>
   )
 }

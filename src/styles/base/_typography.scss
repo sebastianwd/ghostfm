@@ -5,10 +5,16 @@
   font-size: var(--text-xl);
   font-weight: 400;
   font-family: inherit;
+  line-height: 1.1em;
 }
 
 .title-primary {
   font-family: "Roboto", sans-serif;
   font-weight: 100;
   font-size: 36px;
+}
+
+.text-primary {
+  padding: 0px 5%;
+  font-size: calc(var(--text-md) * 0.8);
 }

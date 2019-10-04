@@ -10,19 +10,18 @@ const IndexPage = () => {
     <React.Fragment>
       <SEO title="Home" />
       <div className="section-home section--full-height">
-        <div className="container">
-          <div className="heading-container text-center h-50 col-md-12">
+        <div className="container-fluid container-home">
+          <div className="d-flex align-items-center justify-content-center mt-4">
+            <Search></Search>
+          </div>
+          <div className="heading-container text-left h-50 col-md-6 margin-top-10">
             <h1 className="heading-primary">
               Descubre nueva música y escucha a tus artistas favoritos
             </h1>
-            <p className="w-50 m0-auto">
-              {" "}
+            <p className="text-primary w-75">
               Disfruta de música ilimitada, encuentra artistas similares,
               letras, descargas y más!
             </p>
-          </div>
-          <div className="d-flex align-items-center justify-content-center mt-4">
-            <Search></Search>
           </div>
         </div>
       </div>

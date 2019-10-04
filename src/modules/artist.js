@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import SEO from "../components/seo"
 import useApi from "../components/hooks/useApi"
 import TrackList from "../components/TrackList"
+import SimilarArtist from "../components/SimilarArtist"
 
 const Artist = ({ location, name }) => {
   const { isLoading, getArtistByName } = useApi()
@@ -20,7 +21,7 @@ const Artist = ({ location, name }) => {
       console.log("infostate", infoState)
     }
     console.log("infostate", infoState)
-  }, [])
+  }, [name])
 
   return (
     <div className="section-artist pl-md-4 container-fluid">
@@ -41,7 +42,9 @@ const Artist = ({ location, name }) => {
                 <img src={infoState.strArtistThumb}></img>
               </div>
               <div className="artist-card__info">
-                <h2 className="title-primary">{infoState.strArtist}</h2>
+                <h2 className="title-primary">
+                  {decodeURIComponent(infoState.strArtist)}
+                </h2>
                 <ul className="artist-card__info__genres">
                   <li>{infoState.strGenre}</li>
                   <li>{infoState.strStyle}</li>
@@ -96,7 +99,11 @@ const Artist = ({ location, name }) => {
           <div className="col-12 col-md-8">
             <TrackList artistName={infoState.strArtist}></TrackList>
           </div>
-          <div className="col-12 col-md-4"></div>
+          <div className="col-12 col-md-4">
+            <div className="similar-artists ">
+              <SimilarArtist artistName={infoState.strArtist}></SimilarArtist>
+            </div>
+          </div>
         </div>
       )}
     </div>

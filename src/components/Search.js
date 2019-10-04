@@ -10,7 +10,7 @@ const Search = () => {
   const searchRef = useRef()
   const { playTrack } = useMusicPlayer()
   const { isLoading, isError, getArtistByName, searchAutocomplete } = useApi()
-  const [results, setResults] = useState([])
+  const [results, setResults] = useState()
 
   const handleClick = () => {
     getArtistByName(searchRef.current.value).then(data => {
@@ -24,7 +24,7 @@ const Search = () => {
   }
 
   const handleChange = () => {
-    if (searchRef.current.value !== "") {
+    if (searchRef.current && searchRef.current.value !== "") {
       setTimeout(() => {
         searchAutocomplete(searchRef.current.value).then(results => {
           setResults(results)
@@ -45,28 +45,37 @@ const Search = () => {
 
   return (
     <React.Fragment>
-      <div style={{ position: "relative" }}>
-        <input
-          ref={searchRef}
-          type="text"
-          className="input--primary"
-          placeholder="Buscar"
-          onChange={handleChange}
-        />
+      <div
+        style={{ position: "relative" }}
+        className="w-100 d-flex justify-content-center align-items-center  flex-column"
+      >
+        <div className="input-spacing">
+          <div className="d-flex align-items-center justify-content-center">
+            <input
+              ref={searchRef}
+              type="text"
+              className="input--primary"
+              placeholder="Buscar..."
+              onChange={handleChange}
+            />
 
-        <button
-          onClick={handleClick}
-          type="button"
-          className="btn btn--inside btn--info"
-        >
-          &nbsp;
-          {isLoading ? (
-            <i className="fa fa-spinner fa-spin"></i>
-          ) : (
-            <i className="fa fa-search"></i>
-          )}
-        </button>
-        <Dropdown items={results} triggerSearch={triggerSearch}></Dropdown>
+            <button
+              onClick={handleClick}
+              type="button"
+              className="btn  btn--info"
+            >
+              &nbsp;
+              {isLoading ? (
+                <i className="fa fa-spinner fa-spin"></i>
+              ) : (
+                <i className="fa fa-search"></i>
+              )}
+            </button>
+          </div>
+        </div>
+        {results && (
+          <Dropdown items={results} triggerSearch={triggerSearch}></Dropdown>
+        )}
       </div>
     </React.Fragment>
   )

@@ -3,20 +3,80 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   line-height: 1.6;
-  min-height: 100vh;
   color: var(--gray-1);
 }
 
-html {
+html,
+body {
+  height: 100%;
+  margin: 0;
   overflow-x: hidden;
+}
+html {
+  background-color: #181818;
 }
 
 body {
-  background-image: url(../images/dots.png);
-  background-size: contain;
-  background-color: #16161a;
   position: relative;
-  overflow-x: hidden;
+}
+
+.page-wrapper {
+  min-height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "nav-bar main-view"
+    "now-playing-bar now-playing-bar";
+  position: relative;
+
+  & main {
+    grid-area: main-view;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  @include breakpoint($to-md) {
+    grid-template-areas:
+      "nav-bar nav-bar"
+      "main-view main-view"
+      "now-playing-bar now-playing-bar";
+    grid-template-rows: 92px auto 100px;
+  }
+}
+
+.player-wrapper {
+  grid-area: now-playing-bar;
+  background-color: #181818;
+  width: 100%;
+  //position: relative;
+  padding: 15px 20px 15px 20px;
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
+
+.section-header {
+  grid-area: nav-bar;
+  position: sticky;
+  left: 0;
+  top: 0;
+  max-height: 100vh;
+  @include breakpoint($to-md) {
+    max-height: 92px;
+    z-index: 10;
+  }
+  background-color: rgba(12, 12, 12, 0.8);
+}
+
+#___gatsby {
+  height: 100%;
+}
+#gatsby-focus-wrapper {
+  height: 100%;
 }
 
 p {

@@ -52,7 +52,7 @@
 
 .gallery-grid {
   @include grid;
-  @include gridAuto(260px);
+  @include gridAuto(180px);
 }
 /*-----------------------------------------------*/
 /*https://codepen.io/claudiar/pen/QBdLwR*/

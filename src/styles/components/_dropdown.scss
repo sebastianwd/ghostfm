@@ -1,8 +1,14 @@
+.dropdown-container {
+  position: relative;
+  z-index: 10;
+  width: 80%;
+}
+
 .dropdown {
   position: absolute;
   background-color: #fff;
-  width: 350px;
-  max-height: 200px;
+  width: 100%;
+  max-height: 300px;
   overflow-y: scroll;
   margin-top: 5px;
   border-radius: 3px;
@@ -10,9 +16,6 @@
   color: rgb(36, 36, 36);
   left: 0;
 
-  @include breakpoint($to-sm) {
-    width: 280px;
-  }
   &__items {
     display: block;
     width: 100%;
