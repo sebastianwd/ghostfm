@@ -56,6 +56,13 @@
       background-size: cover !important;
       background-position: 50%;
     }
+    & .icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     @include breakpoint($to-sm) {
       display: none;
     }
@@ -120,7 +127,7 @@
 
   &__track {
     font-size: calc(var(--text-sm) * 1.1);
-    line-height: 16px;
+    line-height: 18px;
     letter-spacing: 0.015em;
     text-align: left;
   }
@@ -142,7 +149,7 @@
   height: 280px !important;
   width: 450px !important;
   position: absolute;
-  bottom: 50px !important;
+  bottom: 40px !important;
   right: 0;
   @include breakpoint($to-sm) {
     height: 0px !important;
