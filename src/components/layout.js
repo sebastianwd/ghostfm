@@ -34,11 +34,7 @@ const Layout = ({ children }) => {
     <MusicPlayerProvider>
       <div className="page-wrapper">
         <Header siteTitle={data.site.siteMetadata.title} />
-        <main>
-          <img src={blob} className="path"></img>
-          <img src={path2} className="path2"></img>
-          {children}
-        </main>
+        <main>{children}</main>
         <div className="player-wrapper">
           <Player></Player>
         </div>

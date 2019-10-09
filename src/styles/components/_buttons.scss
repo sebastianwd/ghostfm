@@ -71,3 +71,26 @@
     color: #fff;
   }
 }
+
+.button {
+  position: relative;
+  color: inherit;
+  outline: 0;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1.35em;
+  border: none;
+  font-size: 0.875rem;
+  padding: 5px 8px;
+  background: #333c44;
+  cursor: pointer;
+  &--close {
+    background: none;
+    font-size: 1.1rem;
+    color: rgba(228, 228, 228, 0.89);
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: rgba(243, 243, 243, 0.952);
+    }
+  }
+}

@@ -1,9 +1,8 @@
 .tracklist-container {
-  padding: 5px;
-  background-color: #282828;
+  padding: 20px 10px;
+  background-color: var(--color-primary-lighten);
   width: 100%;
-  min-height: 50px;
-  margin-top: var(--space-md);
+  min-height: 100px;
 }
 
 .tracklist {
@@ -12,17 +11,44 @@
 }
 
 .track {
+  &.playing {
+    background-color: var(--color-primary-lighten-3);
+    .track__play {
+      transform: scale(1);
+    }
+    .track__name {
+      transform: translateX(12px);
+    }
+  }
+}
+
+.track {
   font-size: calc(var(--text-xs) * 1.05);
   font-weight: 300;
-  background-color: darken(#282828, 1%);
   border-bottom: 1px solid darken(#282828, 4%);
   padding: 12px 5px;
   display: flex;
+  transition: all 0.3s ease-in-out;
+  &:hover:not(.playing) {
+    background-color: var(--color-primary-lighten-3);
+    .track__play {
+      transform: scale(1);
+    }
+    .track__name {
+      transform: translateX(12px);
+    }
+  }
   cursor: pointer;
+
+  &__play {
+    transition: all 0.2s ease-in;
+    transform: scale(0);
+  }
   &__number {
     margin-right: var(--space-lg);
   }
   &__name {
+    transition: all 0.3s ease-in-out;
     margin-right: auto;
   }
   &__playcount {
@@ -31,5 +57,10 @@
   &__lyrics {
     margin-right: 5px;
     cursor: pointer;
+  }
+
+  &__loading {
+    transition: all 0.2s ease-in;
+    display: none;
   }
 }

@@ -1,11 +1,11 @@
-import React, { Fragment, useState, useEffect } from "react"
+import { useState } from "react"
 import axios from "axios"
 
 const useApi = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
 
-  const BASE_URL = "https://ghostfm.herokuapp.com/"
+  const BASE_URL = "http://localhost:8081/"
 
   const fetchData = async (endpoint, params) => {
     setIsError(false)
@@ -71,6 +71,22 @@ const useApi = () => {
     return data
   }
 
+  async function getAlbumsByArtistName(artistName) {
+    console.log(artistName)
+    let data = await fetchData("artist/albums", {
+      name: artistName,
+    })
+    return data
+  }
+  async function getAlbumInfo(artistName, albumName) {
+    console.log("fetching album", albumName)
+    let data = await fetchData("album", {
+      artistName: artistName,
+      albumName: albumName,
+    })
+    return data
+  }
+
   return {
     isLoading,
     isError,
@@ -80,6 +96,8 @@ const useApi = () => {
     getLyrics,
     searchAutocomplete,
     getSimilarByArtistName,
+    getAlbumsByArtistName,
+    getAlbumInfo,
   }
 }
 

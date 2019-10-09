@@ -54,6 +54,11 @@
   @include grid;
   @include gridAuto(180px);
 }
+
+.artist-grid {
+  @include grid;
+  @include gridAuto(160px);
+}
 /*-----------------------------------------------*/
 /*https://codepen.io/claudiar/pen/QBdLwR*/
 /*.grid {

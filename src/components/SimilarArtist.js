@@ -36,6 +36,7 @@ const SimilarArtist = memo(props => {
             <div
               className="similar-card animated fadeIn"
               onClick={() => handleClick(item.strArtist)}
+              key={index}
             >
               <div className="similar-card__image">
                 <div

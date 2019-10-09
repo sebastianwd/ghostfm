@@ -1,0 +1,50 @@
+.album-info-container {
+  background-color: var(--color-primary-lighten);
+  width: 100%;
+
+  &__inner {
+    @include breakpoint($to-md) {
+      flex-direction: column;
+    }
+  }
+
+  & .album-tracks {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 0px 5px;
+  }
+}
+.album-description {
+  text-align: justify;
+  padding: 8px 5px;
+}
+.album-info {
+  display: flex;
+  flex-direction: column;
+
+  flex-basis: 270px;
+
+  @include breakpoint($to-md) {
+    flex-basis: 200px;
+    flex-direction: row;
+  }
+  @include breakpoint($to-sm) {
+    flex-basis: 170px;
+  }
+
+  & .album__image {
+    width: 100%;
+    flex-shrink: 0;
+    &__inner {
+      background-size: contain;
+    }
+    @include breakpoint($to-md) {
+      height: 190px;
+      width: 190px;
+    }
+    @include breakpoint($to-sm) {
+      height: 160px;
+      width: 160px;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.react-tabs {
+  &__tab-list {
+    display: flex;
+    align-items: center;
+    margin: 0 !important;
+    border-bottom: none !important;
+  }
+  &__tab {
+    background-color: var(--color-primary-darken);
+    padding: 10px 30px !important;
+    &:focus::after {
+      display: none;
+      z-index: 999;
+    }
+
+    &--selected {
+      background-color: var(--color-primary-lighten-2) !important;
+      color: whitesmoke !important;
+      border: none !important;
+      border-bottom: 1px solid var(--color-highlight) !important;
+    }
+  }
+}

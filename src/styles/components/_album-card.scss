@@ -1,0 +1,38 @@
+.albums-container {
+  @extend .gallery-grid;
+  background-color: var(--color-primary-lighten);
+  box-shadow: $shadow;
+}
+.album {
+  &__image {
+    height: 200px;
+    position: relative;
+    &__inner {
+      height: 100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    &__overlay {
+      background-color: rgba(0, 0, 0, 0.534);
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 0.3s opacity ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &:hover &__overlay {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+  &__title {
+    position: relative;
+    text-align: center;
+  }
+}

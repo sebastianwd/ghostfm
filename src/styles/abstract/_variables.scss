@@ -1,28 +1,18 @@
+$shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.144);
+
 :root {
   /* COLORS */
 
-  --blue: #5e72e4;
-  --indigo: #5603ad;
-  --purple: #8965e0;
-  --pink: #f3a4b5;
-  --red: #f5365c;
-  --green: #2dce89;
-  --teal: #11cdef;
-  --cyan: #2bffc6;
-  --gray: #6c757d;
-  --gray-dark: #32325d;
-  --light: #ced4da;
-  --lighter: #e9ecef;
-  --primary: #e14eca;
-  --secondary: #f4f5f7;
-  --success: #00f2c3;
-  --info: #1d8cf8;
-  --warning: #ff8d72;
-  --danger: #fd5d93;
-  --light: #adb5bd;
-  --dark: #212529;
-  --default: #344675;
-  --darker: #000;
+  --color-light: 3;
+  --color-primary-darken: hsl(227, 13%, 12%);
+  --color-primary: rgb(31, 33, 40);
+  --color-primary-lighten: hsl(227, 13%, 15%);
+  --color-primary-lighten-2: hsl(227, 13%, 17%);
+  --color-primary-lighten-3: hsl(227, 13%, 21%);
+
+  --color-dark: rgba(12, 12, 12, 0.8);
+  --color-player: #141418;
+  --color-highlight: #00d95f;
 
   --white: #ffffff;
   --gray-1: rgb(240, 240, 240);

@@ -43,10 +43,11 @@ input[type="range"].range__played {
   width: 100%;
   cursor: pointer;
   border-radius: 0; /* iOS */
+  outline: none !important;
 }
 
 .range::-webkit-slider-runnable-track {
-  background: #ddd;
+  background: var(--color-dark);
 }
 
 /*
@@ -54,30 +55,31 @@ input[type="range"].range__played {
 */
 .range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 20px; /* 1 */
+  width: 15px; /* 1 */
   height: $range-input-height;
-  background: #fff;
-  box-shadow: -100vw 0 0 100vw dodgerblue;
-  border: 2px solid #999; /* 1 */
+  border-radius: 50% 50%;
+  background: var(--color-highlight);
+  box-shadow: -100vw 0 0 100vw var(--color-highlight);
+  border: 2px solid rgb(29, 172, 60); /* 1 */
 }
 
 .range::-moz-range-track {
   height: $range-input-height;
-  background: #ddd;
+  background: var(--color-primary);
 }
 
 .range::-moz-range-thumb {
   background: #fff;
   height: $range-input-height;
   width: 20px;
-  border: 3px solid #999;
+  border: 3px solid var(--color-highlight);
   border-radius: 0 !important;
-  box-shadow: -100vw 0 0 100vw dodgerblue;
+  box-shadow: -100vw 0 0 100vw var(--color-highlight);
   box-sizing: border-box;
 }
 
 .range::-ms-fill-lower {
-  background: dodgerblue;
+  background: var(--color-highlight);
 }
 
 .range::-ms-thumb {
@@ -97,7 +99,7 @@ input[type="range"].range__played {
 }
 
 .range::-ms-track {
-  background: #ddd;
+  background: var(--color-primary);
   color: transparent;
   height: $range-input-height;
   border: none;

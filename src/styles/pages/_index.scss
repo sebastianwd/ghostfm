@@ -19,4 +19,25 @@
 
 .container-home {
   height: 80%;
+  position: relative;
+}
+.landing-image-container {
+  margin-top: 8%;
+  display: flex;
+  justify-content: center;
+  @include breakpoint($to-sm) {
+    margin-top: 5%;
+  }
+}
+.landing-image {
+  height: 350px;
+  width: 350px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  @include breakpoint($to-sm) {
+    height: 250px;
+    width: 250px;
+  }
+  background-image: url(../images/icon-music-notes.svg);
 }

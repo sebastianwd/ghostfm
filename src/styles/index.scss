@@ -32,25 +32,9 @@
 @import "components/modal";
 @import "components/dropdown";
 @import "components/similar-card";
+@import "components/tabs";
+@import "components/album-card";
+@import "components/album-info";
 
 @import "pages/index";
 @import "pages/artist";
-
-.path {
-  max-width: 75%;
-  right: 0;
-  top: 30px;
-  max-height: 90%;
-  z-index: -1;
-}
-.path {
-  position: absolute;
-  opacity: 0.02;
-}
-.path2 {
-  position: absolute;
-  opacity: 0.02;
-  max-width: 41%;
-  right: -60px;
-  top: -50px;
-}

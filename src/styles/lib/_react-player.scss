@@ -25,6 +25,7 @@
       width: 40%;
       display: flex;
       align-items: center;
+      justify-content: center;
       @include breakpoint($to-sm) {
         order: 0;
         width: 35%;
