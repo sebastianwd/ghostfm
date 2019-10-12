@@ -53,6 +53,7 @@
 .lyrics {
   margin: 0 auto;
   text-align: center;
+  white-space: pre-wrap;
   @include breakpoint($to-sm) {
     font-size: 11px;
   }

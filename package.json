@@ -13,6 +13,7 @@
     "bootstrap": "^4.3.1",
     "bootstrap-4-grid": "^3.1.0",
     "breakpoint-sass": "^2.7.1",
+    "easy-peasy": "^3.1.0",
     "framer-motion": "^1.6.8",
     "gatsby": "^2.15.15",
     "gatsby-image": "^2.2.19",
