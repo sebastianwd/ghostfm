@@ -5,7 +5,8 @@ const useApi = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
 
-  const BASE_URL = "http://localhost:8081/"
+  // https://ghostfm.herokuapp.com/
+  const BASE_URL = "https://ghostfm.herokuapp.com/"
 
   const fetchData = async (endpoint, params) => {
     setIsError(false)
