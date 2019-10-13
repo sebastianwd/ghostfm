@@ -1,109 +1,61 @@
-import { useContext } from "react"
-import { MusicPlayerContext } from "../_context/MusicPlayerContext"
+import { useStoreActions, useStoreState } from "easy-peasy"
+import useApi from "./useApi"
 
 const useMusicPlayer = () => {
-  const [playerState, setPlayerState] = useContext(MusicPlayerContext)
+  const { getVideoId } = useApi()
 
-  const updateState = newState => {
-    setPlayerState(prevState => {
-      console.log(prevState)
-      return { ...prevState, ...newState }
-    })
-  }
+  const playerState = useStoreState(state => state.player)
+  const playlistState = useStoreState(state => state.playlist)
 
-  function playTrack(id, trackName = "", artistName = "") {
-    console.log(`looking up video with id ${id}...`)
-    updateState({
-      url: `https://www.youtube.com/watch?v=${id}`,
-      played: 0,
-      loaded: 0,
-      pip: false,
-      playing: true,
-      currentSong: trackName,
-      currentArtist: artistName,
-    })
-  }
+  const playTrack = useStoreActions(actions => actions.player.playTrack)
+  const handleProgress = useStoreActions(
+    actions => actions.player.handleProgress
+  )
+  const handleDuration = useStoreActions(
+    actions => actions.player.handleDuration
+  )
+  const handleSeekMouseUp = useStoreActions(
+    actions => actions.player.handleSeekMouseUp
+  )
+  const handleSeekChange = useStoreActions(
+    actions => actions.player.handleSeekChange
+  )
+  const handleSeekMouseDown = useStoreActions(
+    actions => actions.player.handleSeekMouseDown
+  )
+  const handlePlay = useStoreActions(actions => actions.player.handlePlay)
+  const handlePause = useStoreActions(actions => actions.player.handlePause)
+  const handlePlayPause = useStoreActions(
+    actions => actions.player.handlePlayPause
+  )
+  const handleEnded = useStoreActions(actions => actions.player.handleEnded)
 
-  function playTrackAndSetQueue(id, trackName = "", artistName = "", tracks) {
-    if (tracks) {
-      let queue = tracks.map(({ artist, name }) => {
-        return { artist: artist.strArtist, track: name }
-      })
-      updateState({
-        url: `https://www.youtube.com/watch?v=${id}`,
-        played: 0,
-        loaded: 0,
-        pip: false,
-        playing: true,
-        currentSong: trackName,
-        currentArtist: artistName,
-        queue: queue,
-      })
-      console.log("queue added", playerState.queue)
-    } else {
-      updateState({
-        url: `https://www.youtube.com/watch?v=${id}`,
-        played: 0,
-        loaded: 0,
-        pip: false,
-        playing: true,
-        currentSong: trackName,
-        currentArtist: artistName,
+  const setQueue = useStoreActions(actions => actions.playlist.setQueue)
+
+  const playPrev = () => {
+    if (playlistState.queue && playlistState.queue.length > 0) {
+      const prevTrack = playlistState.prevTrack.track
+      const prevArtist = playlistState.prevTrack.artist
+      getVideoId(`${prevArtist} ${prevTrack}`).then(videoId => {
+        playTrack({
+          videoId,
+          current: { track: prevTrack, artist: prevArtist },
+        })
       })
     }
   }
 
-  function setQueue(tracks) {
-    let queue = tracks.map(({ artist, name }) => {
-      return { artist: artist.strArtist, track: name }
-    })
-    updateState({ queue: queue })
-    console.log("queue added", playerState.queue)
-  }
-
-  function handleProgress(state) {
-    if (!state.seeking) {
-      updateState({ ...state })
+  const playNext = () => {
+    if (playlistState.queue && playlistState.queue.length > 0) {
+      const nextTrack = playlistState.nextTrack.track
+      const nextArtist = playlistState.nextTrack.artist
+      getVideoId(`${nextArtist} ${nextTrack}`).then(videoId => {
+        playTrack({
+          videoId,
+          current: { track: nextTrack, artist: nextArtist },
+        })
+      })
     }
-  }
-
-  function handleDuration(duration) {
-    updateState({ duration })
-  }
-
-  function handleSeekMouseUp() {
-    updateState({ seeking: false })
-  }
-
-  function handleSeekChange(e) {
-    updateState({ played: parseFloat(e.target.value) })
-  }
-
-  function handleSeekMouseDown() {
-    updateState({ seeking: true })
-  }
-
-  function handlePlay() {
-    updateState({ playing: true })
-  }
-  function handlePause() {
-    console.log("handlePause")
-    updateState({ playing: false })
-  }
-
-  function handlePlayPause() {
-    console.log(playerState.playing)
-    if (!playerState.url) {
-      return
-    }
-    console.log("pausing...")
-    updateState({ playing: !playerState.playing })
-  }
-
-  function handleEnded() {
-    console.log("song ended")
-
-    updateState({ playing: false })
   }
 
   return {
@@ -115,11 +67,13 @@ const useMusicPlayer = () => {
     handleSeekChange,
     handleSeekMouseDown,
     handlePlay,
-    handleEnded,
-    handlePlayPause,
     handlePause,
+    handlePlayPause,
+    handleEnded,
     setQueue,
-    playTrackAndSetQueue,
+    playlistState,
+    playNext,
+    playPrev,
   }
 }
 

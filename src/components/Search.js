@@ -1,6 +1,4 @@
 import React, { useRef, useContext, useState } from "react"
-
-import useMusicPlayer from "./hooks/useMusicPlayer"
 import axios from "axios"
 import { navigate } from "gatsby"
 import useApi from "../components/hooks/useApi"
@@ -8,7 +6,6 @@ import Dropdown from "../components/Dropdown"
 
 const Search = () => {
   const searchRef = useRef()
-  const { playTrack } = useMusicPlayer()
   const { isLoading, isError, getArtistByName, searchAutocomplete } = useApi()
   const [results, setResults] = useState()
 

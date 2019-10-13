@@ -25,7 +25,7 @@ const Artist = ({ location, name }) => {
       console.log("infostate", infoState)
     }
     console.log("infostate", infoState)
-  }, [infoState, name, location.state, getArtistByName])
+  }, [name, location.state])
 
   return (
     <div className="section-artist pl-md-4 container-fluid">

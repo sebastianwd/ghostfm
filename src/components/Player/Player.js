@@ -1,18 +1,15 @@
-import React, { useContext, useRef } from "react"
+import React, { useRef } from "react"
 import ReactPlayer from "react-player"
-import { MusicPlayerContext } from "../_context/MusicPlayerContext"
-import useMusicPlayer from "../hooks/useMusicPlayer"
-
 import Duration from "../utils/Duration"
-
 import Controls from "./Controls"
 
 import useApi from "../hooks/useApi"
+import useMusicPlayer from "../hooks/useMusicPlayer"
 
 const Player = () => {
-  const [playerState, setPlayerState] = useContext(MusicPlayerContext)
-
   const {
+    playlistState,
+    playerState,
     handleProgress,
     handleDuration,
     handleSeekMouseUp,
@@ -22,32 +19,20 @@ const Player = () => {
     handleEnded,
     handlePause,
     playTrack,
+    playNext,
   } = useMusicPlayer()
-
-  const { getVideoId } = useApi()
 
   const playerRef = useRef()
 
   const handleSeekMouseUpLocal = e => {
-    let target = e.target
     handleSeekMouseUp()
-    playerRef.current && playerRef.current.seekTo(parseFloat(target.value))
+    playerRef.current &&
+      playerRef.current.seekTo(parseFloat(e.currentTarget.value))
   }
 
   const handleEndedLocal = () => {
     handleEnded()
-    if (playerState.queue.length > 0) {
-      const currentTrackIndex = playerState.queue.findIndex(
-        item => item.track === playerState.currentSong
-      )
-      console.log("current song ", playerState.queue[currentTrackIndex])
-      console.log("next song ", playerState.queue[currentTrackIndex + 1])
-      const nextTrack = playerState.queue[currentTrackIndex + 1].track
-      const nextArtist = playerState.queue[currentTrackIndex + 1].artist
-      getVideoId(`${nextArtist} ${nextTrack}`).then(videoId => {
-        playTrack(videoId, nextTrack, nextArtist)
-      })
-    }
+    playNext()
   }
 
   return (
@@ -77,7 +62,7 @@ const Player = () => {
           step="any"
           value={playerState.played}
           onMouseDown={handleSeekMouseDown}
-          onChange={handleSeekChange}
+          onChange={e => handleSeekChange(e.currentTarget.value)}
           onMouseUp={handleSeekMouseUpLocal}
           type="range"
           className="range range__played"
@@ -103,11 +88,11 @@ const Player = () => {
                   ></path>
                 </svg>
               </div>
-              {playerState.thumbnailUrl && (
+              {playlistState.current.image && (
                 <div
                   className="player__thumbnail__inner"
                   style={{
-                    backgroundImage: `url(${playerState.thumbnailUrl ||
+                    backgroundImage: `url(${playlistState.current.image ||
                       "https://i.imgur.com/op68DON.jpg"})`,
                   }}
                 ></div>
@@ -115,16 +100,16 @@ const Player = () => {
             </div>
             <div className="track-info ellipsis-one-line">
               <div className="track-info__track ellipsis-one-line">
-                {playerState.currentSong}
+                {playlistState.current.track}
               </div>
               <div className="track-info__artist ellipsis-one-line mt-1">
-                {playerState.currentArtist}
+                {playlistState.current.artist}
               </div>
             </div>
           </div>
           <div className="player__controls--middle flex-column">
             <div className="main-controls">
-              <Controls></Controls>
+              <Controls playerRef={playerRef}></Controls>
             </div>
           </div>
           <div className="player__controls--right">

@@ -4,20 +4,15 @@
  *
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
-
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import Player from "./Player/Player"
-
-import { MusicPlayerProvider } from "../components/_context/MusicPlayerContext"
-
-import blob from "../images/blob.png"
-import path2 from "../images/path2.png"
+import Header from "./header"
+import { StoreProvider } from "easy-peasy"
+import store from "../components/state/store"
 
 import "../styles/index.scss"
-
-import Header from "./header"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -31,7 +26,7 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <MusicPlayerProvider>
+    <StoreProvider store={store}>
       <div className="page-wrapper">
         <Header siteTitle={data.site.siteMetadata.title} />
         <main>{children}</main>
@@ -39,7 +34,7 @@ const Layout = ({ children }) => {
           <Player></Player>
         </div>
       </div>
-    </MusicPlayerProvider>
+    </StoreProvider>
   )
 }
 
