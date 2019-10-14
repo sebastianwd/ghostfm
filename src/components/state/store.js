@@ -77,7 +77,7 @@ const playlistModel = {
     artist: artistName,
   }*/
   nextTrack: computed(state => {
-    if (!state.queue) {
+    if (!state.queue || !state.current.track) {
       return null
     }
     const currentTrackIndex = state.queue.findIndex(
@@ -90,7 +90,7 @@ const playlistModel = {
     return nextTrack
   }),
   prevTrack: computed(state => {
-    if (!state.queue) {
+    if (!state.queue || !state.current.track) {
       return null
     }
     const currentTrackIndex = state.queue.findIndex(

@@ -31,3 +31,20 @@
     padding: 8px 10px;
   }
 }
+
+.noUi-target {
+  height: 100%;
+  & .noUi-handle {
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+  }
+  border: none !important;
+}
+.noUi-handle:before,
+.noUi-handle:after {
+  height: 0px;
+}
+.noUi-connect {
+  background: var(--color-highlight);
+}

@@ -13,8 +13,7 @@
   }
 }
 .section--full-height {
-  min-height: 100%;
-  overflow: hidden;
+  flex: 1 0 100%;
 }
 
 .container-home {
