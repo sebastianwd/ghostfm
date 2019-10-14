@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 import useApi from "../components/hooks/useApi"
-import LyricsModal from "./LyricsModal"
 import TrackItem from "../components/TrackItem"
-import { useStoreActions, useStoreState } from "easy-peasy"
 
 const TrackList = ({ artistName }) => {
   const { isLoading, isError, getTopTracksByArtistName } = useApi()

@@ -1,3 +1,8 @@
+html {
+  height: 100%;
+  overflow-y: hidden;
+}
+
 body {
   font-size: var(--text-base-size);
   font-family: "Poppins", sans-serif;
@@ -6,15 +11,18 @@ body {
   color: var(--gray-1);
 }
 
-html,
 body {
   height: 100%;
-  margin: 0;
   overflow-x: hidden;
+}
+#___gatsby {
+  height: 100%;
+}
+#gatsby-focus-wrapper {
+  height: 100%;
 }
 
 body {
-  position: relative;
   background-color: var(--color-primary);
 }
 
@@ -64,18 +72,13 @@ body {
   left: 0;
   top: 0;
   max-height: 100vh;
+  flex-direction: column;
   @include breakpoint($to-md) {
+    flex-direction: row;
     max-height: 72px;
     z-index: 10;
   }
   background-color: var(--color-dark);
-}
-
-#___gatsby {
-  height: 100%;
-}
-#gatsby-focus-wrapper {
-  height: 100%;
 }
 
 p {

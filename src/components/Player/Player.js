@@ -1,10 +1,9 @@
-import React, { useRef } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import ReactPlayer from "react-player"
 import Duration from "../utils/Duration"
 import Controls from "./Controls"
-
-import useApi from "../hooks/useApi"
 import useMusicPlayer from "../hooks/useMusicPlayer"
+import Nouislider from "nouislider-react"
 
 const Player = () => {
   const {
@@ -24,10 +23,14 @@ const Player = () => {
 
   const playerRef = useRef()
 
-  const handleSeekMouseUpLocal = e => {
+  const sliderRef = useRef()
+
+  const handleSeekMouseUpLocal = values => {
     handleSeekMouseUp()
-    playerRef.current &&
-      playerRef.current.seekTo(parseFloat(e.currentTarget.value))
+    if (sliderRef.current && sliderRef.current.noUiSlider) {
+      sliderRef.current.noUiSlider.set(values[0])
+    }
+    playerRef.current && playerRef.current.seekTo(values[0])
   }
 
   const handleEndedLocal = () => {
@@ -56,16 +59,23 @@ const Player = () => {
         />
       )}
       <div className="progress-bar">
-        <input
-          min={0}
-          max={1}
-          step="any"
-          value={playerState.played}
-          onMouseDown={handleSeekMouseDown}
-          onChange={e => handleSeekChange(e.currentTarget.value)}
-          onMouseUp={handleSeekMouseUpLocal}
-          type="range"
-          className="range range__played"
+        <Nouislider
+          instanceRef={instance => {
+            if (!sliderRef.current) {
+              sliderRef.current = instance
+            }
+          }}
+          start={playerState.played}
+          connect={[true, false]}
+          range={{
+            min: 0,
+            max: 1,
+          }}
+          onSlide={handleSeekMouseDown}
+          onChange={values => {
+            handleSeekChange(values[0])
+            handleSeekMouseUpLocal(values)
+          }}
           style={{ width: "100%" }}
         />
       </div>
