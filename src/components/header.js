@@ -8,9 +8,17 @@ const Header = ({ sidebarRef }) => {
   const responseGoogle = response => {
     //console.log("google response", response)
   }
+
+  let shouldOpen =
+    typeof window !== "undefined" &&
+    window.matchMedia("(min-width: 992px)").matches
+
   return (
     <React.Fragment>
-      <div className="py-3 px-2 section-header" ref={sidebarRef}>
+      <div
+        className={`py-3 px-2 section-header ${shouldOpen ? `--is-open` : ``}`}
+        ref={sidebarRef}
+      >
         <div className="d-flex align-items-center">
           <div
             className="mt-3  p-3"

@@ -1,0 +1,11 @@
+.navbar {
+  grid-area: nav-bar;
+  height: 70px;
+  background-color: var(--color-primary-darken);
+  position: sticky;
+  padding: 10px 20px;
+
+  &__inner {
+    display: flex;
+  }
+}

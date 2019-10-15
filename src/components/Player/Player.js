@@ -1,27 +1,25 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useRef, useState, useEffect, useContext } from "react"
 import ReactPlayer from "react-player"
 import Duration from "../utils/Duration"
 import Controls from "./Controls"
 import useMusicPlayer from "../hooks/useMusicPlayer"
 import Nouislider from "nouislider-react"
+import VideoPlayer from "./VideoPlayer"
+import useLayoutOptions from "../hooks/useLayoutOptions"
+import { MusicPlayerContext } from "../_context/MusicPlayerContext"
 
 const Player = () => {
   const {
     playlistState,
     playerState,
-    handleProgress,
-    handleDuration,
     handleSeekMouseUp,
     handleSeekChange,
     handleSeekMouseDown,
-    handlePlay,
-    handleEnded,
-    handlePause,
-    playTrack,
-    playNext,
   } = useMusicPlayer()
 
-  const playerRef = useRef()
+  const { layoutState, toggleVideoPosition } = useLayoutOptions()
+
+  const playerRef = useContext(MusicPlayerContext)
 
   const sliderRef = useRef()
 
@@ -33,30 +31,10 @@ const Player = () => {
     playerRef.current && playerRef.current.seekTo(values[0])
   }
 
-  const handleEndedLocal = () => {
-    handleEnded()
-    playNext()
-  }
-
   return (
     <React.Fragment>
-      {playerState.url && (
-        <ReactPlayer
-          url={playerState.url}
-          playing={playerState.playing}
-          volume={playerState.volume}
-          muted={playerState.muted}
-          pip={playerState.pip}
-          controls
-          ref={playerRef}
-          onPlay={handlePlay}
-          onPause={handlePause}
-          onProgress={handleProgress}
-          onDuration={handleDuration}
-          onEnded={handleEndedLocal}
-          className="video-player"
-          style={{ position: "absolute", bottom: "50px", right: "0" }}
-        />
+      {layoutState.videoPosition.fixed && (
+        <VideoPlayer playerRef={playerRef}></VideoPlayer>
       )}
       <div className="progress-bar">
         <Nouislider
@@ -123,6 +101,10 @@ const Player = () => {
             </div>
           </div>
           <div className="player__controls--right">
+            <i
+              className="fab fa-youtube"
+              onClick={() => toggleVideoPosition()}
+            />
             <i className="fa fa-volume-up" />
             <div className="controls__volume d-none d-md-block"></div>
             <i className="fa fa-list-ol" />

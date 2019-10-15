@@ -1,6 +1,6 @@
 import React, { memo } from "react"
 
-const Dropdown = memo(({ items, triggerSearch }) => {
+const Dropdown = ({ items, triggerSearch }) => {
   return (
     <div className="dropdown-container">
       <ul className="dropdown">
@@ -17,6 +17,6 @@ const Dropdown = memo(({ items, triggerSearch }) => {
       </ul>
     </div>
   )
-})
+}
 
 export default Dropdown

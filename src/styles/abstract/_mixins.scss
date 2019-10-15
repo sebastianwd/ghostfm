@@ -55,6 +55,14 @@
   @include gridAuto(180px);
 }
 
+.album-grid {
+  @include grid;
+  @include gridAuto(180px);
+  @include breakpoint($to-sm) {
+    @include gridAuto(160px);
+  }
+}
+
 .artist-grid {
   @include grid;
   @include gridAuto(160px);

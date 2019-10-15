@@ -1,10 +1,7 @@
 .burger-container {
-  position: sticky;
-  z-index: 20;
-  top: 5px;
-  left: 10px;
   -webkit-user-select: none;
   height: 0;
+  width: 0;
   &__inner {
     background-color: rgb(18, 18, 27);
     padding: 10px 10px 5px 10px;

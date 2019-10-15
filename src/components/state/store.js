@@ -1,5 +1,22 @@
 import { createStore, computed, actionOn, action, memo } from "easy-peasy"
 
+const layoutModel = {
+  videoPosition: { docked: true, fixed: false, hidden: false },
+  sidebarState: "SHOW", // "HIDE"
+  toggleVideoPosition: action(state => {
+    if (state.videoPosition.docked) {
+      state.videoPosition.fixed = true
+      state.videoPosition.docked = false
+    } else if (state.videoPosition.fixed) {
+      state.videoPosition.hidden = true
+      state.videoPosition.fixed = false
+    } else if (state.videoPosition.hidden) {
+      state.videoPosition.docked = true
+      state.videoPosition.hidden = false
+    }
+  }),
+}
+
 const playerModel = {
   url: null,
   pip: false,
@@ -113,6 +130,7 @@ const playlistModel = {
 const storeModel = {
   player: playerModel,
   playlist: playlistModel,
+  layout: layoutModel,
 }
 
 const store = createStore(storeModel)

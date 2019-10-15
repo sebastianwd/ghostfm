@@ -1,38 +1,15 @@
-import React, { useState } from "react"
+import React, { useRef } from "react"
 
-const MusicPlayerContext = React.createContext([{}, () => {}])
-
-const updatePlayerState = (setState, newState) => {
-  setState(prevState => {
-    return { ...prevState, ...newState }
-  })
-}
+const MusicPlayerContext = React.createContext(null)
 
 const MusicPlayerProvider = props => {
-  const [state, setState] = useState({
-    url: null,
-    pip: false,
-    playing: false,
-    controls: false,
-    light: false,
-    volume: 0.8,
-    muted: false,
-    played: 0,
-    loaded: 0,
-    duration: 0,
-    playbackRate: 1.0,
-    loop: false,
-    currentImg: "",
-    currentSong: "",
-    currentArtist: "",
-    currentAlbum: "",
-    queue: [],
-  })
+  const playerRef = useRef()
+
   return (
-    <MusicPlayerContext.Provider value={[state, setState]}>
+    <MusicPlayerContext.Provider value={playerRef}>
       {props.children}
     </MusicPlayerContext.Provider>
   )
 }
 
-export { MusicPlayerContext, MusicPlayerProvider, updatePlayerState }
+export { MusicPlayerContext, MusicPlayerProvider }

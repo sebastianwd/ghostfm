@@ -34,6 +34,10 @@ const Search = () => {
     }
   }
 
+  const handleFocus = () => {
+    handleChange()
+  }
+
   const triggerSearch = query => {
     setResults([])
     searchRef.current.value = query
@@ -54,6 +58,7 @@ const Search = () => {
               className="input--primary"
               placeholder="Buscar..."
               onChange={handleChange}
+              onFocus={handleFocus}
             />
 
             <button
@@ -70,7 +75,7 @@ const Search = () => {
             </button>
           </div>
         </div>
-        {results && (
+        {results && results.length > 0 && (
           <Dropdown items={results} triggerSearch={triggerSearch}></Dropdown>
         )}
       </div>

@@ -1,5 +1,5 @@
 .albums-container {
-  @extend .gallery-grid;
+  @extend .album-grid;
   background-color: var(--color-primary-lighten);
   box-shadow: $shadow;
 }

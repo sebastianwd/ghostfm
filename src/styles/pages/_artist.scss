@@ -1,5 +1,12 @@
 .similar-artists {
-  @extend .artist-grid;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  margin-top: var(--space-xxl);
+
+  &__inner {
+    @extend .artist-grid;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+  @include breakpoint($to-sm) {
+    margin-top: var(--space-md);
+  }
 }

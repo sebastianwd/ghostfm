@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import SEO from "../components/seo"
 import useApi from "../components/hooks/useApi"
 import TrackList from "../components/TrackList"
@@ -7,11 +7,16 @@ import { Tab, Tabs, TabList } from "react-tabs"
 import LazyTabPanel from "../components/Tabs/LazyTabPanel"
 import "../../node_modules/react-tabs/style/react-tabs.css"
 import AlbumList from "../components/Album/AlbumList"
+import VideoPlayer from "../components/Player/VideoPlayer"
+import useLayoutOptions from "../components/hooks/useLayoutOptions"
+import { MusicPlayerContext } from "../components/_context/MusicPlayerContext"
 
 const Artist = ({ location, name }) => {
   const { isLoading, getArtistByName } = useApi()
   const [infoState, setInfoState] = useState(null)
-  const state = useState(0)
+  const { layoutState } = useLayoutOptions()
+  const playerRef = useContext(MusicPlayerContext)
+
   useEffect(() => {
     if (!location.state || !location.state.idArtist) {
       getArtistByName(name).then(data => {
@@ -33,7 +38,7 @@ const Artist = ({ location, name }) => {
       <div className="row">
         {infoState && (
           <React.Fragment>
-            <div className="col-12 col-md-8">
+            <div className="col-12 col-md-7 col-lg-8">
               <div
                 className="artist-card"
                 style={{
@@ -99,11 +104,17 @@ const Artist = ({ location, name }) => {
           </React.Fragment>
         )}
 
-        <div className="col-12 col-md-4"></div>
+        <div className="col-12 col-md-5 col-lg-4">
+          {!layoutState.videoPosition.fixed && (
+            <div className="video-container">
+              <VideoPlayer playerRef={playerRef}></VideoPlayer>
+            </div>
+          )}
+        </div>
       </div>
       {infoState && (
         <div className="row">
-          <div className="col-12 col-md-8 mt-3">
+          <div className="col-12 col-md-7 col-lg-8 mt-3">
             <Tabs>
               <TabList>
                 <Tab>Canciones</Tab>
@@ -118,8 +129,8 @@ const Artist = ({ location, name }) => {
               </LazyTabPanel>
             </Tabs>
           </div>
-          <div className="col-12 col-md-4">
-            <div className="similar-artists ">
+          <div className="col-12  col-md-5 col-lg-4 similar-artists">
+            <div className="similar-artists__inner ">
               <SimilarArtist artistName={infoState.strArtist}></SimilarArtist>
             </div>
           </div>

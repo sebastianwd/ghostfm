@@ -1,4 +1,7 @@
 .react-tabs {
+  @include breakpoint($to-sm) {
+    margin-top: var(--space-xl);
+  }
   &__tab-list {
     display: flex;
     align-items: center;

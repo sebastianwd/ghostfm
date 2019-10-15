@@ -14,7 +14,7 @@ const IndexPage = () => {
             <Search></Search>
           </div>
           <div className="row">
-            <div className="heading-container text-left h-50 col-md-6 margin-top-10">
+            <div className="heading-container text-left h-50 col-md-6 margin-top-lg">
               <h1 className="heading-primary fade-in-left">
                 Descubre nueva música y escucha a tus artistas favoritos
               </h1>

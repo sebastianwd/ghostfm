@@ -29,6 +29,7 @@
       @include breakpoint($to-sm) {
         order: 0;
         width: 35%;
+        font-size: 0.9em;
       }
     }
 
@@ -134,7 +135,7 @@
   }
 }
 
-.video-player > * {
+.--fixed.video-player > * {
   height: 280px !important;
   width: 450px !important;
   position: absolute;
@@ -146,7 +147,7 @@
     width: auto !important;
   }
 }
-.video-player {
+.--fixed.video-player {
   height: 280px !important;
   width: 450px !important;
   position: absolute;
@@ -154,5 +155,18 @@
   right: 0;
   @include breakpoint($to-sm) {
     height: 0px !important;
+  }
+}
+.video-container {
+  position: relative;
+  display: flex;
+  height: 127%;
+  @include breakpoint($to-sm) {
+    padding-top: var(--space-md);
+  }
+  & .--docked.video-player {
+    margin: 0 auto !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 }
