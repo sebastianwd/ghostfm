@@ -1,7 +1,10 @@
 .similar-artists {
   margin-top: var(--space-xxl);
   position: relative;
+  perspective: 1200px;
   &__inner {
+    transform-style: "preserve-3d";
+    transition: transform 200ms ease, opacity 200ms ease;
     @extend .artist-grid;
     grid-column-gap: 0px;
     grid-row-gap: 0px;

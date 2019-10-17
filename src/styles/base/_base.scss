@@ -1,8 +1,7 @@
 html {
   height: 100%;
-  overflow-y: hidden;
   min-height: 100% !important;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body {
@@ -15,16 +14,15 @@ body {
 
 body {
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 #___gatsby {
   height: 100%;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 #gatsby-focus-wrapper {
   height: 100%;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 body {
@@ -33,7 +31,7 @@ body {
 
 .page-wrapper {
   height: 100%;
-  overflow-y: hidden;
+  overflow: hidden;
   width: 100%;
   display: grid;
   grid-template-areas:
@@ -42,13 +40,13 @@ body {
     "now-playing-bar  now-playing-bar";
   grid-template-columns: auto minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
-  overflow-x: hidden;
 
   & main {
     grid-area: main-view;
     overflow-y: auto;
     width: 100%;
     display: flex;
+    flex-basis: 100%;
     flex-direction: column;
     min-height: 0;
     position: relative;

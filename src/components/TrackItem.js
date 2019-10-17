@@ -3,6 +3,8 @@ import useApi from "../components/hooks/useApi"
 import useMusicPlayer from "./hooks/useMusicPlayer"
 import LyricsModal from "./LyricsModal"
 import usePortal from "react-useportal"
+import { translateIn, fadeIn, slideIn } from "./utils/animations"
+import { motion } from "framer-motion"
 
 const TrackItem = ({
   artistName,
@@ -54,9 +56,12 @@ const TrackItem = ({
 
   return (
     <React.Fragment>
-      <div
+      <motion.div
+        initial={fadeIn.initial}
+        animate={fadeIn.animate}
         className={`track ${isPlaying ? `playing` : ``}`}
         onClick={handleClick}
+        style={{ ...fadeIn.styles, transitionDelay: `${trackNumber * 20}ms` }}
       >
         <span className="track__number">{trackNumber}</span>
         {!isLoading && (
@@ -78,7 +83,7 @@ const TrackItem = ({
         >
           <i className="fa fa-lg fa-align-right"></i>
         </span>
-      </div>
+      </motion.div>
       {lyrics.lyrics && isOpen && (
         <LyricsModal
           trackName={lyrics.trackName}

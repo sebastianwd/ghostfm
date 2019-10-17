@@ -5,7 +5,13 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-image: linear-gradient(to bottom, #0a0a0a7a, #070707fa);
   &__image {
+    width: 170px;
+    height: 182px;
+    & > div {
+      z-index: 99;
+    }
     & img {
       max-width: 170px;
       max-height: 170px;

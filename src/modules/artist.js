@@ -10,6 +10,7 @@ import AlbumList from "../components/Album/AlbumList"
 import VideoPlayer from "../components/Player/VideoPlayer"
 import useLayoutOptions from "../components/hooks/useLayoutOptions"
 import { MusicPlayerContext } from "../components/_context/MusicPlayerContext"
+import Image from "../components/image"
 
 const Artist = ({ location, name }) => {
   const { isLoading, getArtistByName } = useApi()
@@ -41,16 +42,33 @@ const Artist = ({ location, name }) => {
             <div className="col-12 col-md-7 col-lg-8">
               <div
                 className="artist-card"
-                style={{
-                  backgroundImage: `linear-gradient(
+                style={
+                  infoState.strArtistFanart
+                    ? {
+                        backgroundImage: `linear-gradient(
           to bottom,
           #0a0a0a7a,
           #070707fa
         ), url(${infoState.strArtistFanart})`,
-                }}
+                      }
+                    : {}
+                }
               >
                 <div className="artist-card__image">
-                  <img src={infoState.strArtistThumb}></img>
+                  {infoState.strArtistThumb ? (
+                    <img src={infoState.strArtistThumb}></img>
+                  ) : (
+                    <Image
+                      filename="artist_bio_placeholder.png"
+                      style={{
+                        position: "absolute",
+                        left: 0,
+                        top: 0,
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  )}
                 </div>
                 <div className="artist-card__info">
                   <h2 className="title-primary">
@@ -130,9 +148,7 @@ const Artist = ({ location, name }) => {
             </Tabs>
           </div>
           <div className="col-12  col-md-5 col-lg-4 similar-artists">
-            <div className="similar-artists__inner ">
-              <SimilarArtist artistName={infoState.strArtist}></SimilarArtist>
-            </div>
+            <SimilarArtist artistName={infoState.strArtist}></SimilarArtist>
           </div>
         </div>
       )}

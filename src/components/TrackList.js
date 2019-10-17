@@ -20,7 +20,7 @@ const TrackList = ({ artistName }) => {
         {tracks &&
           tracks.map((item, index) => {
             return (
-              <React.Fragment key={index}>
+              <React.Fragment key={`${item.name}${index}`}>
                 <TrackItem
                   artistName={artistName}
                   trackName={item.name}
