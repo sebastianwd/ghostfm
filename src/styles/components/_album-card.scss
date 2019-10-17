@@ -2,6 +2,8 @@
   @extend .album-grid;
   background-color: var(--color-primary-lighten);
   box-shadow: $shadow;
+  min-height: 160px;
+  position: relative;
 }
 .album {
   &__image {

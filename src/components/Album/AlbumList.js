@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import AlbumItem from "./AlbumItem"
 import useApi from "../hooks/useApi"
 import ShowAlbumTracksList from "../AlbumTracks/AlbumTracksList"
+import Loading from "../utils/Loading"
 
 const AlbumList = ({ name }) => {
   const { isLoading, isError, getAlbumsByArtistName } = useApi()
@@ -24,7 +25,7 @@ const AlbumList = ({ name }) => {
     <>
       {!albumInfo && (
         <div className="albums-container p-2  pt-4">
-          {isLoading && "Cargando..."}
+          {isLoading && <Loading></Loading>}
           {isError && "Error de conexión"}
           {albums &&
             albums.map((item, index) => {

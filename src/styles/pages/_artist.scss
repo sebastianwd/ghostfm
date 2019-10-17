@@ -1,6 +1,6 @@
 .similar-artists {
   margin-top: var(--space-xxl);
-
+  position: relative;
   &__inner {
     @extend .artist-grid;
     grid-column-gap: 0px;

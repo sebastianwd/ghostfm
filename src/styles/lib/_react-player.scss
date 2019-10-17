@@ -160,9 +160,10 @@
 .video-container {
   position: relative;
   display: flex;
-  height: 127%;
+  height: calc(100% + 65px);
   @include breakpoint($to-sm) {
     padding-top: var(--space-md);
+    height: 260px;
   }
   & .--docked.video-player {
     margin: 0 auto !important;

@@ -1,30 +1,18 @@
 .burger-container {
   -webkit-user-select: none;
-  height: 0;
-  width: 0;
-  &__inner {
-    background-color: rgb(18, 18, 27);
-    padding: 10px 10px 5px 10px;
-    border-radius: 5px;
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    @include breakpoint($to-md) {
-      left: auto !important;
-      right: 20px;
-    }
-  }
-  @include breakpoint($to-md) {
-    left: none !important;
-    right: 20px;
-  }
+  height: 100%;
+  width: 52px;
+  border-radius: 5px;
+  background-color: rgb(18, 18, 27);
+  padding: 10px 10px 5px 10px;
+  position: relative;
+
   user-select: none;
   & span {
     display: block;
-    width: 33px;
+    width: 100%;
     height: 4px;
     margin-bottom: 5px;
-    position: relative;
     background: #cdcdcd;
     border-radius: 3px;
     z-index: 20;
@@ -41,13 +29,10 @@
   height: 100%;
   position: absolute;
   top: 0px;
-  left: 2px;
-
+  left: 0px;
   cursor: pointer;
-
   opacity: 0; /* hide this */
   z-index: 21; /* and place it over the hamburger */
-
   -webkit-touch-callout: none;
   &:hover ~ span {
     background: rgb(255, 255, 255);

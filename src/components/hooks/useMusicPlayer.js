@@ -1,9 +1,10 @@
-import { useStoreActions, useStoreState } from "easy-peasy"
+import { useStoreActions, useStoreState, useStore } from "easy-peasy"
 import useApi from "./useApi"
 
 const useMusicPlayer = () => {
   const { getVideoId } = useApi()
 
+  const store = useStore()
   const playerState = useStoreState(state => state.player)
   const playlistState = useStoreState(state => state.playlist)
 
@@ -33,7 +34,9 @@ const useMusicPlayer = () => {
   const setQueue = useStoreActions(actions => actions.playlist.setQueue)
 
   const playPrev = () => {
-    if (playlistState.queue && playlistState.queue.length > 0) {
+    let playlistState = store.getState().playlist
+    let queue = playlistState.queue
+    if (queue && queue.length > 0) {
       const prevTrack = playlistState.prevTrack.track
       const prevArtist = playlistState.prevTrack.artist
       getVideoId(`${prevArtist} ${prevTrack}`).then(videoId => {
@@ -46,9 +49,14 @@ const useMusicPlayer = () => {
   }
 
   const playNext = () => {
-    if (playlistState.queue && playlistState.queue.length > 0) {
+    let playlistState = store.getState().playlist
+    let queue = playlistState.queue
+    if (queue && queue.length > 0) {
       const nextTrack = playlistState.nextTrack.track
       const nextArtist = playlistState.nextTrack.artist
+      console.log("nextArtist", nextArtist)
+      console.log("nextTrack", nextTrack)
+
       getVideoId(`${nextArtist} ${nextTrack}`).then(videoId => {
         playTrack({
           videoId,

@@ -1,20 +1,19 @@
 import React, { useEffect, useState, memo } from "react"
 import useApi from "../components/hooks/useApi"
 import { navigate } from "gatsby"
+import Loading from "./utils/Loading"
 const SimilarArtist = memo(props => {
-  const {
-    isLoading,
-    isError,
-    getSimilarByArtistName,
-    getArtistByName,
-  } = useApi()
+  const { isError, getSimilarByArtistName, getArtistByName } = useApi()
 
   const [similar, setSimilar] = useState()
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
+    setLoading(true)
     getSimilarByArtistName(props.artistName).then(data => {
       if (data) {
         setSimilar(data)
       }
+      setLoading(false)
     })
   }, [props.artistName])
 
@@ -30,6 +29,7 @@ const SimilarArtist = memo(props => {
 
   return (
     <React.Fragment>
+      {loading && <Loading></Loading>}
       {similar &&
         similar.map((item, index) => {
           return (

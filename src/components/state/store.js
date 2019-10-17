@@ -89,6 +89,7 @@ const playlistModel = {
       state.current = target.payload.current
     }
   ),
+
   /*{
     track: trackName,
     artist: artistName,

@@ -6,7 +6,7 @@
  */
 import React, { useRef, useEffect } from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import Player from "./Player/Player"
 import Header from "./header"
 import { StoreProvider } from "easy-peasy"
@@ -14,6 +14,7 @@ import store from "../components/state/store"
 
 import "../styles/index.scss"
 import { MusicPlayerProvider } from "./_context/MusicPlayerContext"
+import Image from "./image"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -44,8 +45,29 @@ const Layout = ({ children }) => {
           />
           <nav className="navbar">
             <div className="navbar__inner">
-              <div className="burger-container">
-                <div className="burger-container__inner">
+              <div className="logo mr-4">
+                <Link to="/" className="logo__image">
+                  <Image
+                    alt="Ghostfm Logo"
+                    filename="logo.png"
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      top: 0,
+                      width: "100%",
+                      height: "100%",
+                      zIndex: "-99",
+                    }}
+                  />
+                </Link>
+                <Link to="/" className="logo__brand">
+                  <div className="glitch ml-2" data-text="GhostFM">
+                    GhostFM
+                  </div>
+                </Link>
+              </div>
+              <div className="d-flex align-items-center ">
+                <div className="burger-container">
                   <input
                     type="checkbox"
                     className="burger"

@@ -1,0 +1,69 @@
+.section-header {
+  grid-area: sidebar;
+  position: sticky;
+  left: 0;
+  top: 0;
+  max-height: 100%;
+  background-color: var(--color-dark);
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 3px rgba(0, 0, 0, 0.12), 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+
+  transition-duration: 0.4s;
+  transition-property: width, transform, padding;
+  transition-timing-function: cubic-bezier(0.77, 0.2, 0.05, 1);
+  overflow: hidden;
+  padding: 0 !important;
+  width: 0;
+  @include breakpoint($to-md) {
+    z-index: 4;
+  }
+
+  > * {
+    visibility: hidden;
+  }
+
+  &.--is-open {
+    transition-duration: 0.5s;
+    transition-property: width, transform, padding;
+    transition-timing-function: cubic-bezier(0.77, 0.2, 0.05, 1);
+
+    width: 196px;
+
+    > * {
+      visibility: visible;
+    }
+
+    @include breakpoint($to-md) {
+      width: 280px;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 196px;
+    padding-bottom: 16px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    padding-top: 16px !important;
+    @include breakpoint($to-md) {
+      width: 280px;
+    }
+  }
+}
+
+.btn-google {
+  align-self: center;
+  padding: 5px 10px 5px 10px !important;
+  align-items: center;
+  & > div {
+    display: flex;
+    align-items: center;
+    padding: 0 !important;
+  }
+  & > span {
+    padding: 0 !important;
+    font-weight: 800 !important;
+  }
+}
