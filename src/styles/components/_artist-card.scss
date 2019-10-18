@@ -6,28 +6,56 @@
   background-position: center;
   background-repeat: no-repeat;
   background-image: linear-gradient(to bottom, #0a0a0a7a, #070707fa);
+  position: relative;
+  flex-wrap: wrap;
+  @include breakpoint($to-sm) {
+    flex-direction: column;
+    align-items: center;
+  }
   &__image {
-    width: 170px;
+    min-width: 170px;
     height: 182px;
+    flex-basis: 170px;
+    transform: translateY(50px);
+    margin-right: 15px;
+    @include breakpoint($to-sm) {
+      transform: translateY(0);
+      margin-right: 0;
+    }
+    @include breakpoint($to-sm) {
+      min-width: 120px;
+      flex-basis: 120px;
+      height: 132px;
+    }
     & > div {
+      max-width: 170px;
+      max-height: 170px;
       z-index: 99;
+      @include breakpoint($to-sm) {
+        max-width: 120px;
+        max-height: 120px;
+      }
     }
     & img {
       max-width: 170px;
       max-height: 170px;
       border-radius: 50%;
       height: auto;
+      @include breakpoint($to-sm) {
+        max-width: 120px;
+        max-height: 120px;
+      }
     }
-
-    transform: translateY(50px);
-    margin-right: 15px;
   }
 
   &__info {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-
+    @include breakpoint($to-sm) {
+      align-items: center;
+    }
+    margin-bottom: 20px;
     &__genres {
       display: inline-flex;
       text-transform: uppercase;
@@ -44,14 +72,18 @@
 ul.social {
   align-self: flex-end;
   margin-left: auto;
-
+  display: inline-flex;
+  @include breakpoint($to-sm) {
+    margin-left: 0;
+    align-self: center;
+  }
   li {
     color: rgba(196, 196, 196, 0.801);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: var(--space-lg);
+    height: var(--space-lg);
     padding: 1%;
     font-size: var(--text-md);
     border: 1px solid rgba(167, 146, 129, 0.4);

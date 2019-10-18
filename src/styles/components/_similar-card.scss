@@ -23,6 +23,18 @@
       background-size: cover;
       background-repeat: no-repeat;
       will-change: transform;
+      background-image: radial-gradient(
+        top,
+        circle farthest-corner,
+        #252529 0%,
+        #121214da 80%
+      );
+      background-image: -webkit-radial-gradient(
+        top,
+        circle farthest-corner,
+        #252529 0%,
+        #121214da 80%
+      );
     }
   }
   &__title {

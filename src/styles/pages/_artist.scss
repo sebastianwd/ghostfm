@@ -2,14 +2,30 @@
   margin-top: var(--space-xxl);
   position: relative;
   perspective: 1200px;
+  margin-bottom: var(--space-xl);
   &__inner {
     transform-style: "preserve-3d";
     transition: transform 200ms ease, opacity 200ms ease;
     @extend .artist-grid;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    max-height: 550px;
+    overflow-y: auto;
+    box-shadow: $shadow-hard;
   }
   @include breakpoint($to-sm) {
     margin-top: var(--space-md);
+  }
+
+  &__title {
+    box-shadow: $shadow-hard;
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    color: whitesmoke;
+    padding: 20px 40px;
+    font-size: 0.95rem;
+    background-color: var(--color-primary-darken);
+    text-transform: uppercase;
   }
 }

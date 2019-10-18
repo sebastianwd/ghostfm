@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import useApi from "../hooks/useApi"
 import Image from "../../components/image"
 import TrackItem from "../TrackItem"
+import ButtonBack from "../Buttons/ButtonBack"
 
 function ShowAlbumTracksList({ album, artistName, closeAlbumInfo }) {
   return (
@@ -25,7 +26,7 @@ const AlbumTracksList = ({ artistName, album, closeAlbumInfo }) => {
 
   return (
     <div className="album-info-container p-2  pt-4">
-      <button onClick={closeAlbumInfo}>Regresar</button>
+      <ButtonBack onClick={closeAlbumInfo}>Regresar</ButtonBack>
       {albumInfo && (
         <React.Fragment>
           <div className="d-flex album-info-container__inner">

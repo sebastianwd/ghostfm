@@ -28,6 +28,11 @@ const VideoPlayer = memo(({ playerRef }) => {
     className = "--docked"
   }
 
+  const handleError = () => {
+    handleEnded()
+    playNext()
+  }
+
   useEffect(() => {
     if (playerState.played) {
       playerRef.current && playerRef.current.seekTo(playerState.played)
@@ -39,23 +44,22 @@ const VideoPlayer = memo(({ playerRef }) => {
 
   return (
     <React.Fragment>
-      {playerState.url && (
-        <ReactPlayer
-          url={playerState.url}
-          playing={playerState.playing}
-          volume={playerState.volume}
-          muted={playerState.muted}
-          pip={playerState.pip}
-          controls
-          ref={playerRef}
-          onPlay={handlePlay}
-          onPause={handlePause}
-          onProgress={handleProgress}
-          onDuration={handleDuration}
-          onEnded={onEnded}
-          className={`video-player ${className}`}
-        />
-      )}
+      <ReactPlayer
+        url={playerState.url}
+        playing={playerState.playing}
+        volume={playerState.volume}
+        muted={playerState.muted}
+        pip={playerState.pip}
+        controls
+        ref={playerRef}
+        onPlay={handlePlay}
+        onPause={handlePause}
+        onProgress={handleProgress}
+        onDuration={handleDuration}
+        onEnded={onEnded}
+        onError={handleError}
+        className={`video-player ${className}`}
+      />
     </React.Fragment>
   )
 })

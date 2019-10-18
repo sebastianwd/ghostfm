@@ -35,6 +35,7 @@ const SimilarArtist = props => {
 
   return (
     <React.Fragment>
+      <h3 className="similar-artists__title">Artistas similares</h3>
       {loading && <Loading></Loading>}
 
       {similar && (
@@ -53,9 +54,13 @@ const SimilarArtist = props => {
                 <div className="similar-card__image">
                   <div
                     className="similar-card__image__inner"
-                    style={{
-                      backgroundImage: ` linear-gradient(90deg, rgba(11,5,6,0.68) 0%, rgba(11,14,6,0.68) 94%), url(${item.strArtistThumb})`,
-                    }}
+                    style={
+                      item.strArtistThumb
+                        ? {
+                            backgroundImage: `url(${item.strArtistThumb})`,
+                          }
+                        : {}
+                    }
                   ></div>
                   <div className="similar-card__title">
                     <p className="similar-card__title__inner">

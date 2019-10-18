@@ -36,8 +36,18 @@ const Header = ({ sidebarRef }) => {
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={"single_host_origin"}
-            className="btn-google"
+            className="btn-google mb-3"
           />
+          <div class="menu">
+            <a href="#" class="menu__item">
+              <i class="ion-ios-musical-notes"></i>
+              <span>Mi música</span>
+            </a>
+            <a href="#" class="menu__item">
+              <i class="ion-headphone"></i>
+              <span>Mis playlists</span>
+            </a>
+          </div>
         </div>
       </div>
     </React.Fragment>
