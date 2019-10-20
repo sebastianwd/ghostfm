@@ -7,6 +7,8 @@ const isAuthenticated = () => !!getRefreshToken()
 const userModel = {
   userId: null,
   setSession: action(state => {
+    console.log("cookie value", getRefreshToken)
+    console.log("isAuthenticated", isAuthenticated())
     if (isAuthenticated()) {
       state.userId = getRefreshToken()
     } else {
