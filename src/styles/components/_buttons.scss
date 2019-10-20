@@ -125,4 +125,12 @@
       }
     }
   }
+
+  &--nav {
+    padding: 10px 10px;
+    border-radius: 8px;
+    &:hover {
+      color: rgba(243, 243, 243, 0.952);
+    }
+  }
 }

@@ -6,7 +6,7 @@ const useApi = () => {
   const [isError, setIsError] = useState(false)
 
   // https://ghostfm.herokuapp.com/
-  const BASE_URL = "https://ghostfm.herokuapp.com/"
+  const BASE_URL = "http://localhost:8081/"
 
   const fetchData = async (endpoint, params) => {
     setIsError(false)
@@ -14,7 +14,7 @@ const useApi = () => {
     try {
       console.log("useApi", "fetching: " + BASE_URL + endpoint)
       const result = await axios({
-        method: "get",
+        method: "GET",
         url: `${BASE_URL}${endpoint}`,
         params: params,
       })
@@ -23,6 +23,24 @@ const useApi = () => {
       return result.data
     } catch (error) {
       console.log("useApi", error)
+      setIsError(true)
+    }
+    setIsLoading(false)
+  }
+  const postData = async (endpoint, data, withCredentials = false) => {
+    setIsError(false)
+    setIsLoading(true)
+    try {
+      console.log("useApi", "post: " + BASE_URL + endpoint)
+      const result = await axios({
+        method: "POST",
+        url: `${BASE_URL}${endpoint}`,
+        data: data,
+        withCredentials: withCredentials,
+      })
+      setIsLoading(false)
+      return result.data
+    } catch (error) {
       setIsError(true)
     }
     setIsLoading(false)
@@ -79,6 +97,37 @@ const useApi = () => {
     })
     return data
   }
+  async function logIn({ givenName, name, email }, isGoogle = 0) {
+    let data = await postData(
+      "login",
+      {
+        username: givenName,
+        name,
+        email,
+        isGoogle,
+      },
+      true
+    )
+    return data
+  }
+  async function registerUser({ givenName, name, email }, isGoogle = 0) {
+    let data = await postData(
+      "register",
+      {
+        username: givenName,
+        name,
+        email,
+        isGoogle,
+      },
+      true
+    )
+    return data
+  }
+  async function getUserPlaylists() {
+    let data = await postData("user/playlist", {}, true)
+    return data
+  }
+
   async function getAlbumInfo(artistName, albumName) {
     console.log("fetching album", albumName)
     let data = await fetchData("album", {
@@ -89,6 +138,9 @@ const useApi = () => {
   }
 
   return {
+    getUserPlaylists,
+    logIn,
+    registerUser,
     isLoading,
     isError,
     getArtistByName,

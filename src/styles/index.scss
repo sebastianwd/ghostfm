@@ -2,6 +2,7 @@
 @import "~breakpoint-sass/stylesheets/breakpoint";
 @import "~animate.css/animate";
 @import "../../node_modules/breakpoint-sass/stylesheets/breakpoint";
+@import "../../node_modules/node-snackbar/dist/snackbar.min.css";
 
 @import "base/reset";
 
@@ -44,3 +45,7 @@
 
 @import "pages/index";
 @import "pages/artist";
+
+.snackbar-container p {
+  font-weight: 400 !important;
+}

@@ -3,12 +3,27 @@ import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import Image from "./image"
 import { GoogleLogin } from "react-google-login"
+import useApi from "./hooks/useApi"
+import Snackbar from "node-snackbar"
+import useSession from "../components/hooks/useSession"
+import { useStoreState } from "easy-peasy"
 
 const Header = ({ sidebarRef }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const { registerUser, logIn, getUserPlaylists } = useApi()
+
+  const userState = useStoreState(state => state.user)
+  const { setSession } = useSession()
 
   const responseGoogle = response => {
-    //console.log("google response", response)
+    console.log("google response", response.profileObj)
+    logIn(response.profileObj, 1).then(res => {
+      if (res.errors) {
+        Snackbar.show({ text: res.errors[0] })
+        return
+      }
+      setSession()
+    })
   }
 
   useEffect(() => {
@@ -27,27 +42,33 @@ const Header = ({ sidebarRef }) => {
         ref={sidebarRef}
       >
         <div className="section-header__inner">
-          <p className="text-center mb-3">
-            Ingresa para poder guardar playlists y más
-          </p>
-          <GoogleLogin
-            clientId="1050239333740-5ju5e3kropm25l5fre7emc3d5gl8lrdg.apps.googleusercontent.com"
-            buttonText="Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}
-            className="btn-google mb-3"
-          />
-          <div class="menu">
-            <a href="#" class="menu__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>Mi música</span>
-            </a>
-            <a href="#" class="menu__item">
-              <i class="ion-headphone"></i>
-              <span>Mis playlists</span>
-            </a>
-          </div>
+          {!userState.userId && (
+            <React.Fragment>
+              <p className="text-center mb-3">
+                Ingresa para poder guardar playlists y más
+              </p>
+              <GoogleLogin
+                clientId="1050239333740-5ju5e3kropm25l5fre7emc3d5gl8lrdg.apps.googleusercontent.com"
+                buttonText="Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+                className="btn-google mb-3"
+              />
+            </React.Fragment>
+          )}
+          {userState.userId && (
+            <div className="menu">
+              <a href="#" className="menu__item">
+                <i className="ion-ios-musical-notes"></i>
+                <span>Mi música</span>
+              </a>
+              <a href="#" className="menu__item">
+                <i className="ion-headphone"></i>
+                <span>Mis playlists</span>
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </React.Fragment>

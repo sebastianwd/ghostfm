@@ -15,6 +15,9 @@ import store from "../components/state/store"
 import "../styles/index.scss"
 import { MusicPlayerProvider } from "./_context/MusicPlayerContext"
 import Image from "./image"
+import useSession from "./hooks/useSession"
+import Authenticate from "./User/Authenticate"
+import Nav from "./Nav"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -26,7 +29,6 @@ const Layout = ({ children }) => {
       }
     }
   `)
-
   const sidebarRef = useRef()
   const layoutRef = useRef()
 
@@ -38,53 +40,19 @@ const Layout = ({ children }) => {
   return (
     <MusicPlayerProvider>
       <StoreProvider store={store}>
-        <div className="page-wrapper" ref={layoutRef}>
-          <Header
-            siteTitle={data.site.siteMetadata.title}
-            sidebarRef={sidebarRef}
-          />
-          <nav className="navbar">
-            <div className="navbar__inner">
-              <div className="logo mr-4">
-                <Link to="/" className="logo__image">
-                  <Image
-                    alt="Ghostfm Logo"
-                    filename="logo.png"
-                    style={{
-                      position: "absolute",
-                      left: 0,
-                      top: 0,
-                      width: "100%",
-                      height: "100%",
-                      zIndex: "-99",
-                    }}
-                  />
-                </Link>
-                <Link to="/" className="logo__brand">
-                  <div className="glitch ml-2" data-text="GhostFM">
-                    GhostFM
-                  </div>
-                </Link>
-              </div>
-              <div className="d-flex align-items-center ">
-                <div className="burger-container">
-                  <input
-                    type="checkbox"
-                    className="burger"
-                    onChange={handleChange}
-                  />
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
+        <Authenticate>
+          <div className="page-wrapper" ref={layoutRef}>
+            <Header
+              siteTitle={data.site.siteMetadata.title}
+              sidebarRef={sidebarRef}
+            />
+            <Nav onChange={handleChange}></Nav>
+            <main>{children}</main>
+            <div className="player-wrapper">
+              <Player></Player>
             </div>
-          </nav>
-          <main>{children}</main>
-          <div className="player-wrapper">
-            <Player></Player>
           </div>
-        </div>
+        </Authenticate>
       </StoreProvider>
     </MusicPlayerProvider>
   )

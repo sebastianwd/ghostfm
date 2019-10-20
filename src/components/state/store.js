@@ -1,4 +1,19 @@
 import { createStore, computed, actionOn, action, memo } from "easy-peasy"
+import Cookies from "js-cookie"
+
+const getRefreshToken = () => Cookies.get("rfrsh")
+const isAuthenticated = () => !!getRefreshToken()
+
+const userModel = {
+  userId: null,
+  setSession: action(state => {
+    if (isAuthenticated()) {
+      state.userId = getRefreshToken()
+    } else {
+      state.userId = null
+    }
+  }),
+}
 
 const layoutModel = {
   videoPosition: { docked: true, fixed: false, hidden: false },
@@ -132,6 +147,7 @@ const storeModel = {
   player: playerModel,
   playlist: playlistModel,
   layout: layoutModel,
+  user: userModel,
 }
 
 const store = createStore(storeModel)

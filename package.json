@@ -26,7 +26,9 @@
     "gatsby-plugin-sharp": "^2.2.22",
     "gatsby-source-filesystem": "^2.1.22",
     "gatsby-transformer-sharp": "^2.2.14",
+    "js-cookie": "^2.2.1",
     "node-sass": "^4.12.0",
+    "node-snackbar": "^0.1.15",
     "normalize.css": "^8.0.1",
     "nouislider": "^14.0.2",
     "nouislider-react": "^3.3.3",
@@ -46,6 +48,7 @@
     "react-spring": "^8.0.27",
     "react-tabs": "^3.0.0",
     "react-typeahead": "^2.0.0-alpha.8",
+    "react-use-auth": "^0.5.0",
     "react-useportal": "^1.0.3",
     "reactstrap": "^8.0.1",
     "semantic-ui-css": "^2.4.1"

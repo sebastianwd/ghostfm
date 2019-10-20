@@ -7,6 +7,9 @@
   transition: all 0.3s ease;
   overflow: hidden;
   z-index: 4;
+  @include breakpoint($to-sm) {
+    height: 80px;
+  }
 
   &:hover {
     & .similar-card__image__inner {

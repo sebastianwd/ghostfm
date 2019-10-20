@@ -5,6 +5,7 @@ import LyricsModal from "./LyricsModal"
 import usePortal from "react-useportal"
 import { translateIn, fadeIn, slideIn } from "./utils/animations"
 import { motion } from "framer-motion"
+import Snackbar from "node-snackbar"
 
 const TrackItem = ({
   artistName,
@@ -26,7 +27,15 @@ const TrackItem = ({
 
   const showLyrics = e => {
     e.stopPropagation()
+
     getLyrics(artistName, trackName).then(lyrics => {
+      if (!lyrics) {
+        Snackbar.show({
+          text: "No se encontró la letra de esta canción",
+          pos: "top-center",
+          duration: 900,
+        })
+      }
       setLyrics({ lyrics, trackName })
     })
   }
