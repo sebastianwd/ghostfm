@@ -6,7 +6,7 @@
  */
 import React, { useRef, useEffect } from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql, Link, navigate } from "gatsby"
 import Player from "./Player/Player"
 import Header from "./header"
 import { StoreProvider } from "easy-peasy"
@@ -18,6 +18,8 @@ import Image from "./image"
 import useSession from "./hooks/useSession"
 import Authenticate from "./User/Authenticate"
 import Nav from "./Nav"
+
+import { AuthProvider } from "react-use-auth"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
