@@ -7,9 +7,19 @@ const useLayoutOptions = () => {
     actions => actions.layout.toggleVideoPosition
   )
 
+  const openPlaylistModal = useStoreActions(
+    actions => actions.layout.openPlaylistModal
+  )
+
+  const closePlaylistModal = useStoreActions(
+    actions => actions.layout.closePlaylistModal
+  )
+
   return {
     layoutState,
     toggleVideoPosition,
+    openPlaylistModal,
+    closePlaylistModal,
   }
 }
 

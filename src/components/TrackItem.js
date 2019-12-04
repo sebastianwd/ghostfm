@@ -6,6 +6,8 @@ import usePortal from "react-useportal"
 import { translateIn, fadeIn, slideIn } from "./utils/animations"
 import { motion } from "framer-motion"
 import Snackbar from "node-snackbar"
+import useLayoutOptions from "./hooks/useLayoutOptions"
+import useSession from "./hooks/useSession"
 
 const TrackItem = ({
   artistName,
@@ -20,10 +22,14 @@ const TrackItem = ({
     trackName: "",
   })
   const { setQueue, playTrack, playlistState } = useMusicPlayer()
+
+  const { openPlaylistModal } = useLayoutOptions()
   const { isOpen, closePortal, openPortal } = usePortal({
     closeOnOutsideClick: false,
   })
   const [isPlaying, setIsPlaying] = useState()
+
+  const { isAuthenticated } = useSession()
 
   const showLyrics = e => {
     e.stopPropagation()
@@ -33,7 +39,7 @@ const TrackItem = ({
         Snackbar.show({
           text: "No se encontró la letra de esta canción",
           pos: "top-center",
-          duration: 900,
+          duration: 3000,
         })
       }
       setLyrics({ lyrics, trackName })
@@ -62,6 +68,22 @@ const TrackItem = ({
       }
     )
   }
+  const openPlaylistsModal = e => {
+    e.stopPropagation()
+
+    if (!isAuthenticated()) {
+      Snackbar.show({
+        text: "Ingresa o crea una cuenta para acceder a tus playlist",
+        pos: "top-center",
+        duration: 5000,
+      })
+      return
+    }
+    openPlaylistModal({
+      track: trackName,
+      artist: artistName,
+    })
+  }
 
   return (
     <React.Fragment>
@@ -73,6 +95,13 @@ const TrackItem = ({
         style={{ ...fadeIn.styles, transitionDelay: `${trackNumber * 20}ms` }}
       >
         <span className="track__number">{trackNumber}</span>
+        <span
+          className="track__add"
+          title={"Añadir a playlist"}
+          onClick={openPlaylistsModal}
+        >
+          <i className="fa  fa-plus"></i>
+        </span>
         {!isLoading && (
           <span className="track__play">
             <i className="fa  fa-play"></i>
@@ -87,6 +116,7 @@ const TrackItem = ({
         <span className="track__playcount">{playcount || ""}</span>
         <span
           className="track__lyrics"
+          title={"Ver letra"}
           onClick={showLyrics}
           onMouseDown={openPortal}
         >

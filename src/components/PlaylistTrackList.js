@@ -3,17 +3,13 @@ import useApi from "../components/hooks/useApi"
 import TrackItem from "../components/TrackItem"
 import { PlaylistModal } from "./shared/PlaylistModal"
 
-const TrackList = ({ artistName }) => {
-  const { isLoading, isError, getTopTracksByArtistName } = useApi()
+const PlaylistTrackList = ({ trackList }) => {
+  const { isLoading, isError, getUserPlaylistsSongs } = useApi()
   const [tracks, setTracks] = useState()
 
   useEffect(() => {
-    getTopTracksByArtistName(artistName).then(data => {
-      if (!isError && data) {
-        setTracks(data)
-      }
-    })
-  }, [artistName])
+    setTracks(trackList)
+  }, [trackList])
 
   return (
     <div className="tracklist-container">
@@ -23,9 +19,8 @@ const TrackList = ({ artistName }) => {
             return (
               <React.Fragment key={`${item.name}${index}`}>
                 <TrackItem
-                  artistName={artistName}
+                  artistName={item.artist.strArtist}
                   trackName={item.name}
-                  playcount={item.playcount}
                   trackNumber={index + 1}
                   tracks={tracks}
                 ></TrackItem>
@@ -37,4 +32,4 @@ const TrackList = ({ artistName }) => {
   )
 }
 
-export default TrackList
+export default PlaylistTrackList

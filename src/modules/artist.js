@@ -28,7 +28,6 @@ const Artist = ({ location, name }) => {
       })
     } else {
       setInfoState(location.state)
-      console.log("infostate", infoState)
     }
     console.log("infostate", infoState)
   }, [name, location.state])

@@ -6,7 +6,7 @@
  */
 import React, { useRef, useEffect } from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql, Link, navigate } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import Player from "./Player/Player"
 import Header from "./header"
 import { StoreProvider } from "easy-peasy"
@@ -18,8 +18,9 @@ import Image from "./image"
 import useSession from "./hooks/useSession"
 import Authenticate from "./User/Authenticate"
 import Nav from "./Nav"
-
-import { AuthProvider } from "react-use-auth"
+import { PlaylistModal } from "../components/shared/PlaylistModal"
+import useLayoutOptions from "./hooks/useLayoutOptions"
+import { toast } from "react-toastify"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -34,11 +35,12 @@ const Layout = ({ children }) => {
   const sidebarRef = useRef()
   const layoutRef = useRef()
 
+  toast.configure()
+
   const handleChange = () => {
     sidebarRef.current.classList.toggle("--is-open")
     layoutRef.current.classList.toggle("--sidebar-is-closed")
   }
-
   return (
     <MusicPlayerProvider>
       <StoreProvider store={store}>
@@ -54,6 +56,7 @@ const Layout = ({ children }) => {
               <Player></Player>
             </div>
           </div>
+          <PlaylistModal></PlaylistModal>
         </Authenticate>
       </StoreProvider>
     </MusicPlayerProvider>

@@ -1,8 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
 import Image from "./image"
+import useSession from "../components/hooks/useSession"
+import { useStoreState } from "easy-peasy"
 
 const Nav = ({ onChange }) => {
+  const { signOut } = useSession()
+  const userState = useStoreState(state => state.user)
+
   return (
     <nav className="navbar">
       <div className="navbar__inner">
@@ -35,7 +40,13 @@ const Nav = ({ onChange }) => {
             <span></span>
           </div>
         </div>
-        <button className="button button--nav">sign out</button>
+        {userState.userId && (
+          <div className="d-flex align-items-center ml-auto">
+            <button className="button button--nav" onClick={signOut}>
+              Sign Out
+            </button>
+          </div>
+        )}
       </div>
     </nav>
   )

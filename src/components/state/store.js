@@ -1,16 +1,14 @@
 import { createStore, computed, actionOn, action, memo } from "easy-peasy"
 import Cookies from "js-cookie"
 
-const getRefreshToken = () => Cookies.get("rfrsh")
-const isAuthenticated = () => !!getRefreshToken()
+const getAuthToken = () => Cookies.get("ghsetk")
+const isAuthenticated = () => !!getAuthToken()
 
 const userModel = {
   userId: null,
   setSession: action(state => {
-    console.log("cookie value", getRefreshToken)
-    console.log("isAuthenticated", isAuthenticated())
     if (isAuthenticated()) {
-      state.userId = getRefreshToken()
+      state.userId = getAuthToken()
     } else {
       state.userId = null
     }
@@ -31,6 +29,21 @@ const layoutModel = {
       state.videoPosition.docked = true
       state.videoPosition.hidden = false
     }
+  }),
+  isPlaylistModalOpen: false,
+  itemToAdd: {
+    track: "",
+    artist: "",
+    album: "",
+  },
+  openPlaylistModal: action((state, payload) => {
+    state.isPlaylistModalOpen = true
+    state.itemToAdd.track = payload.track
+    state.itemToAdd.artist = payload.artist
+    state.itemToAdd.album = payload.album || ""
+  }),
+  closePlaylistModal: action(state => {
+    state.isPlaylistModalOpen = false
   }),
 }
 

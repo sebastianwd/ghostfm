@@ -1,39 +1,47 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
+import { navigate } from "gatsby"
 import React, { useEffect, useState } from "react"
-import Image from "./image"
-import { GoogleLogin } from "react-google-login"
 import useApi from "./hooks/useApi"
-import Snackbar from "node-snackbar"
 import useSession from "../components/hooks/useSession"
+
 import { useStoreState } from "easy-peasy"
+import { GoogleButton, MicrosoftButton } from "../components/shared/LoginButton"
+import Scrollbars from "react-scrollbars-custom"
 
 const Header = ({ sidebarRef }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const { registerUser, logIn, getUserPlaylists } = useApi()
-
   const userState = useStoreState(state => state.user)
-  const { setSession } = useSession()
 
-  const responseGoogle = response => {
-    console.log("google response", response.profileObj)
-    logIn(response.profileObj, 1).then(res => {
-      if (res.errors) {
-        Snackbar.show({ text: res.errors[0] })
-        return
-      }
-      setSession()
-    })
-  }
+  const { getUserPlaylists } = useApi()
+  const [playlists, setPlaylists] = useState()
 
-  useEffect(() => {
+  const shouldSibebarOpen = () => {
     let shouldOpen =
       typeof window !== "undefined" &&
       window.matchMedia("(min-width: 992px)").matches
     if (shouldOpen) {
-      setIsOpen(!isOpen)
+      setIsOpen(shouldOpen)
     }
-  }, [])
+  }
+
+  const loadPlaylists = () => {
+    getUserPlaylists().then(playlists => {
+      setPlaylists(playlists)
+    })
+    shouldSibebarOpen()
+  }
+  const navigateToPlaylist = playlist => {
+    navigate("/playlist/" + playlist.id, {
+      state: { playlist },
+    })
+  }
+
+  useEffect(() => {
+    if (userState.userId) {
+      loadPlaylists()
+    } else {
+      shouldSibebarOpen()
+    }
+  }, [userState.userId])
 
   return (
     <React.Fragment>
@@ -47,14 +55,17 @@ const Header = ({ sidebarRef }) => {
               <p className="text-center mb-3">
                 Ingresa para poder guardar playlists y más
               </p>
-              <GoogleLogin
-                clientId="1050239333740-5ju5e3kropm25l5fre7emc3d5gl8lrdg.apps.googleusercontent.com"
-                buttonText="Google"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={"single_host_origin"}
-                className="btn-google mb-3"
-              />
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <GoogleButton />
+                <MicrosoftButton />
+              </div>
             </React.Fragment>
           )}
           {userState.userId && (
@@ -63,24 +74,30 @@ const Header = ({ sidebarRef }) => {
                 <i className="ion-ios-musical-notes"></i>
                 <span>Mi música</span>
               </a>
-              <a href="#" className="menu__item">
+              <span className="menu__header mt-3 mb-1">
                 <i className="ion-headphone"></i>
-                <span>Mis playlists</span>
-              </a>
+                <span>Playlists</span>
+              </span>
+              <Scrollbars noScrollX={true}>
+                <ul className="menu__playlists">
+                  {playlists &&
+                    playlists.map((playlist, index) => {
+                      return (
+                        <>
+                          <li onClick={() => navigateToPlaylist(playlist)}>
+                            {playlist.name}
+                          </li>
+                        </>
+                      )
+                    })}
+                </ul>
+              </Scrollbars>
             </div>
           )}
         </div>
       </div>
     </React.Fragment>
   )
-}
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
 }
 
 export default Header

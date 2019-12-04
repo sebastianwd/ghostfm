@@ -133,4 +133,9 @@
       color: rgba(243, 243, 243, 0.952);
     }
   }
+
+  &--highlight {
+    padding: 8px 10px;
+    background-color: var(--color-highlight);
+  }
 }

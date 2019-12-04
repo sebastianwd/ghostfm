@@ -1,14 +1,17 @@
 import { useState } from "react"
 import axios from "axios"
+import useSession from "./useSession"
 
 const useApi = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
 
+  const { getAuthToken, getToken } = useSession()
+
   // https://ghostfm.herokuapp.com/
   const BASE_URL = "https://ghostfm.herokuapp.com/"
 
-  const fetchData = async (endpoint, params) => {
+  const fetchData = async (endpoint, params, headers = null) => {
     setIsError(false)
     setIsLoading(true)
     try {
@@ -17,6 +20,7 @@ const useApi = () => {
         method: "GET",
         url: `${BASE_URL}${endpoint}`,
         params: params,
+        headers: headers && headers,
       })
       console.log("useApi", "Data received: " + JSON.stringify(result))
       setIsLoading(false)
@@ -27,7 +31,7 @@ const useApi = () => {
     }
     setIsLoading(false)
   }
-  const postData = async (endpoint, data, withCredentials = false) => {
+  const postData = async (endpoint, data, headers = null) => {
     setIsError(false)
     setIsLoading(true)
     try {
@@ -36,10 +40,10 @@ const useApi = () => {
         method: "POST",
         url: `${BASE_URL}${endpoint}`,
         data: data,
-        withCredentials: withCredentials,
+        headers: headers && headers,
       })
       setIsLoading(false)
-      return result.data
+      return result
     } catch (error) {
       setIsError(true)
     }
@@ -97,34 +101,59 @@ const useApi = () => {
     })
     return data
   }
-  async function logIn({ givenName, name, email }, isGoogle = 0) {
+  async function logIn({ username, name, email }) {
+    let data = await postData("log_in", {
+      username,
+      name,
+      email,
+    })
+    return data
+  }
+
+  async function addPlaylist(playlist) {
     let data = await postData(
-      "login",
+      "user/playlist",
+      { ...playlist },
       {
-        username: givenName,
-        name,
-        email,
-        isGoogle,
-      },
-      true
+        Authorization: getAuthToken(),
+        Token: getToken(),
+      }
     )
     return data
   }
-  async function registerUser({ givenName, name, email }, isGoogle = 0) {
+  async function addToPlaylist(playlistId, song) {
     let data = await postData(
-      "register",
+      "user/playlist/song",
+      { playlistId, ...song },
       {
-        username: givenName,
-        name,
-        email,
-        isGoogle,
-      },
-      true
+        Authorization: getAuthToken(),
+        Token: getToken(),
+      }
     )
     return data
   }
+
   async function getUserPlaylists() {
-    let data = await postData("user/playlist", {}, true)
+    let data = await fetchData(
+      "user/playlist",
+      {},
+      {
+        Authorization: getAuthToken(),
+        Token: getToken(),
+      }
+    )
+    return data
+  }
+
+  async function getUserPlaylistsSongs(playlistId) {
+    let data = await fetchData(
+      "user/playlist/song",
+      { playlistId },
+      {
+        Authorization: getAuthToken(),
+        Token: getToken(),
+      }
+    )
     return data
   }
 
@@ -138,14 +167,16 @@ const useApi = () => {
   }
 
   return {
+    getUserPlaylistsSongs,
+    addPlaylist,
     getUserPlaylists,
     logIn,
-    registerUser,
     isLoading,
     isError,
     getArtistByName,
     getTopTracksByArtistName,
     getVideoId,
+    addToPlaylist,
     getLyrics,
     searchAutocomplete,
     getSimilarByArtistName,

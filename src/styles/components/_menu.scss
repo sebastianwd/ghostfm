@@ -6,6 +6,8 @@
   align-self: center;
   width: 100%;
   margin-top: var(--space-sm);
+  flex-basis: 80%;
+  position: relative;
   &__item {
     color: #aaaaaa;
     padding: 10px 0;
@@ -34,6 +36,37 @@
 
       &::after {
         transform: scaleX(1);
+      }
+    }
+  }
+
+  &__header {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    padding: 10px 0;
+    font-size: 12px;
+    padding-left: 8%;
+    display: flex;
+    flex-flow: row nowrap;
+    cursor: default;
+  }
+  &__playlists {
+    padding-left: 8%;
+    font-size: 16px;
+    max-height: 100%;
+    & li {
+      height: 32px;
+      cursor: default;
+      display: flex;
+      align-items: center;
+      &:last-child {
+        margin-bottom: var(--space-xl);
+      }
+      &:hover {
+        color: white;
+        text-decoration: none;
+        border-right: 3px solid #1ed760;
       }
     }
   }

@@ -25,7 +25,7 @@ module.exports = {
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/artist/*`] },
+      options: { prefixes: [`/artist/*`, `/playlist/*`] },
     },
     `gatsby-plugin-offline`,
     {
