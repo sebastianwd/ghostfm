@@ -1,8 +1,8 @@
 import React from "react"
-import MicrosoftLogin from "react-microsoft-login-ssr-fix"
 import { GoogleLogin } from "react-google-login"
 import useApi from "../hooks/useApi"
 import useSession from "../hooks/useSession"
+import MicrosoftLogin from "react-microsoft-login"
 
 export const GoogleButton = () => {
   const { logIn } = useApi()

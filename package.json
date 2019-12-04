@@ -45,7 +45,7 @@
     "react-google-login": "^5.0.7",
     "react-helmet": "^5.2.1",
     "react-loading-overlay": "^1.0.1",
-    "react-microsoft-login-ssr-fix": "^1.6.2",
+    "react-microsoft-login": "^1.8.1",
     "react-player": "^1.13.0",
     "react-range": "^1.4.3",
     "react-rangeslider": "^2.2.0",
