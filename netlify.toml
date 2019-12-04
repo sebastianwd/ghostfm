@@ -2,3 +2,8 @@
   from = "/artist/*"
   to = "/artist/index.html"
   status = 200
+[[redirects]]
+  from = "/playlist/*"
+  to = "/playlist/index.html"
+  status = 200
+
