@@ -7,3 +7,4 @@
 <h1 align="center">
   GhostFm
 </h1>
+ /*"react-microsoft-login": "github:sebastianwd/react-microsoft-login",*/

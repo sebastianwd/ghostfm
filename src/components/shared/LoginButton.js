@@ -1,5 +1,5 @@
 import React from "react"
-import MicrosoftLogin from "react-microsoft-login"
+import MicrosoftLogin from "react-microsoft-login-ssr-fix"
 import { GoogleLogin } from "react-google-login"
 import useApi from "../hooks/useApi"
 import useSession from "../hooks/useSession"
