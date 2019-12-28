@@ -7,4 +7,5 @@
 <h1 align="center">
   GhostFm
 </h1>
- /*"react-microsoft-login": "github:sebastianwd/react-microsoft-login",*/
+ <img alt="MainPage" src="https://i.imgur.com/ZqXA3bd.jpg" width="100%" />
+
