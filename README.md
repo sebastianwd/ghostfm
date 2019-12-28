@@ -8,4 +8,5 @@
   GhostFm
 </h1>
  <img alt="MainPage" src="https://i.imgur.com/ZqXA3bd.jpg" width="100%" />
+<img alt="AlbumPage" src="https://i.imgur.com/vVx8dpw.jpg" width="100%" />
 
