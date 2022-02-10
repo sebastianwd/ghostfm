@@ -28,7 +28,7 @@
     "gatsby-transformer-sharp": "^2.3.2",
     "i": "^0.3.6",
     "js-cookie": "^2.2.1",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "node-snackbar": "^0.1.16",
     "normalize.css": "^8.0.1",
     "nouislider": "^14.0.3",
